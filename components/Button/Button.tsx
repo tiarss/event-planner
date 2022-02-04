@@ -8,7 +8,6 @@ export const ButtonPrimary = ({
   disabled,
   isLoading,
 }: buttonPropsType) => {
-
   return (
     <>
       {isLoading ? (
@@ -33,8 +32,6 @@ export const ButtonSecondary = ({
   disabled,
   isLoading,
 }: buttonPropsType) => {
-  title = "Button Secondary";
-  isLoading = false; // masih tahap percobaan, bisa di hapus kalau sedang dipakai
   return (
     <>
       {isLoading ? (
@@ -59,8 +56,6 @@ export const ButtonTertier = ({
   disabled,
   isLoading,
 }: buttonPropsType) => {
-  title = "Button Tertier";
-  isLoading = false; // masih tahap percobaan, bisa di hapus kalau sedang dipakai
   return (
     <>
       {isLoading ? (
