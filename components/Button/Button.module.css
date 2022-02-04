@@ -1,0 +1,106 @@
+.button_primary {
+  cursor: pointer;
+  background-color: #79e2b3;
+  outline: none;
+  border: 2px solid #79e2b3;
+  color: #25282b;
+  padding: 7px 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 14px; /* Testing awal */
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
+
+.button_primary:hover {
+  background-color: #7cebb9;
+  border: 2px solid #7cebb9;
+  color: #25282b;
+}
+
+.button_primary:active {
+  background-color: #a1ebc9;
+  border: 2px solid #a1ebc9;
+}
+
+.button_primary:disabled {
+  cursor: not-allowed;
+  background-color: rgb(192, 192, 192);
+  color: grey;
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.button_secondary {
+  cursor: pointer;
+  background-color: white;
+  outline: none;
+  border: 2px solid #79e2b3;
+  color: #25282b;
+  padding: 7px 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 14px; /* Testing awal */
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
+
+.button_secondary:hover {
+  background-color: #7cebb9;
+  color: #25282b;
+}
+
+.button_secondary:active {
+  background-color: #a1ebc9;
+  border: 2px solid #a1ebc9;
+}
+
+.button_secondary:disabled {
+  cursor: not-allowed;
+  background-color: rgb(192, 192, 192);
+  color: grey;
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.button_tertier {
+  cursor: pointer;
+  background-color: white;
+  outline: none;
+  border: none;
+  color: #25282b;
+  padding: 7px 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 14px; /* Testing awal */
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
+
+.button_tertier:hover {
+  background-color: #7cebb9;
+  color: #25282b;
+}
+
+.button_tertier:active {
+  background-color: #a1ebc9;
+}
+
+.button_tertier:disabled {
+  cursor: not-allowed;
+  background-color: rgb(192, 192, 192);
+  color: grey;
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.button_loading {
+  cursor: not-allowed;
+  background-color: #62d19f;
+  outline: none;
+  border: 2px solid #62d19f;
+  color: #25282b;
+  padding: 7px 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 14px; /* Testing awal */
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
