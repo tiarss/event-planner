@@ -33,3 +33,8 @@ export type cardsCommentPropsType = {
   name?: string;
   comment?: string;
 }
+
+export type inputSearchPropsType = {
+  label?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}

@@ -9,6 +9,7 @@ import { CardsHome } from "../components/CardsHome/CardsHome";
 import { InputText } from "../components/Input/Input";
 import { CardsDetail } from "../components/CardsDetail/CardsDetail";
 import { CardsComment } from "../components/CardsComment/CardsComment";
+import { Search } from "../components/Search/Search";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
       <button className="btn btn-primary">Primary</button>
       <CardsDetail location="Bandung, Jawa Barat" date="2022-03-04, 12:34 PM" category="Music"/>
       <div className="container">
+        <Search /> <br/><br/>
         <CardsComment
           image="https://asset.kompas.com/crops/KwgrhXBTh3P8uTQwfNT9LDa7ETU=/0x66:1059x772/750x500/data/photo/2019/10/03/5d9585b4b313c.jpg"
           name="Alpaca"
