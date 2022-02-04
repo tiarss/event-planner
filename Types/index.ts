@@ -21,3 +21,20 @@ export type inputTextPropsType = {
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+export type cardsDetailPropsType = {
+  location?: string;
+  date?: string;
+  category?: string;
+}
+
+export type cardsCommentPropsType = {
+  image?: string;
+  name?: string;
+  comment?: string;
+}
+
+export type inputSearchPropsType = {
+  label?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
