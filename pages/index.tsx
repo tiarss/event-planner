@@ -10,6 +10,7 @@ import { InputText } from "../components/Input/Input";
 import { CardsDetail } from "../components/CardsDetail/CardsDetail";
 import { CardsComment } from "../components/CardsComment/CardsComment";
 import { Search } from "../components/Search/Search";
+import { InputSelect } from "../components/Select/Select";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
         <CardsHome />
         <CardsHome />
       </div>
+      <InputSelect option={["kategori1", "kategori2", "kategori3"]}/>
       <InputText />
       <button className="btn btn-primary">Primary</button>
       <CardsDetail location="Bandung, Jawa Barat" date="2022-03-04, 12:34 PM" category="Music"/>
