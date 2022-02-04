@@ -7,6 +7,7 @@ import {
 } from "../components/Button/Button";
 import { CardsHome } from "../components/CardsHome/CardsHome";
 import { InputText } from "../components/Input/Input";
+import { CardsDetail } from "../components/CardsDetail/CardsDetail";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <ButtonPrimary />
+      <ButtonPrimary title="Button Primary"/>
       <ButtonSecondary />
       <ButtonTertier />
       <div style={{display: "flex", gap:"25px", flexWrap: "wrap", padding: "0px 100px"}}>
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
       </div>
       <InputText />
       <button className="btn btn-primary">Primary</button>
-
+      <CardsDetail location="Bandung, Jawa Barat" date="2022-03-04, 12:34 PM" category="Music"/>
     </div>
   );
 };

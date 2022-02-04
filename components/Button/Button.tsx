@@ -8,8 +8,6 @@ export const ButtonPrimary = ({
   disabled,
   isLoading,
 }: buttonPropsType) => {
-  title = "Button Primary";
-  isLoading = false; // masih tahap percobaan, bisa di hapus kalau sedang dipakai
 
   return (
     <>
