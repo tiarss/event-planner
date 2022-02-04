@@ -1,0 +1,51 @@
+.cards_body{
+   width: 100%;
+   display: flex;
+   gap: 20px;
+   padding: 0px 20px;
+}
+
+.cards_left{
+   width: 300px
+}
+
+.cards_image{
+   width: 250px;
+   height: 150px;
+   background-size: cover;
+   background-position: center;
+   border-radius: 10px;
+   margin-bottom: 10px;
+}
+
+.cards_details{
+   display: flex;
+   flex-direction: column;
+   padding-bottom: 20px;
+}
+
+.cards_details > p{
+   margin-bottom: 0px;
+}
+
+.cards_right{
+   position: relative;
+   width: 100%;
+}
+
+.cards_right > p {
+   text-align: justify;
+}
+
+.cards_head{
+   font-weight: 500;
+}
+
+.button_group {
+   display: flex;
+   justify-content: flex-end;
+   gap: 10px;
+   bottom: 10px;
+   right: 0px;
+   position: absolute;
+}
