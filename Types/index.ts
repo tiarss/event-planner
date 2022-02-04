@@ -27,3 +27,9 @@ export type cardsDetailPropsType = {
   date?: string;
   category?: string;
 }
+
+export type cardsCommentPropsType = {
+  image?: string;
+  name?: string;
+  comment?: string;
+}
