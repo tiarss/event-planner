@@ -28,6 +28,7 @@ const Home: NextPage = () => {
         <CardsHome />
       </div>
       <InputText />
+      <button className="btn btn-primary">Primary</button>
 
     </div>
   );
