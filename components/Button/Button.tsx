@@ -9,7 +9,10 @@ export const ButtonPrimary = ({
   isLoading,
 }: buttonPropsType) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> bf59fda94392bf24ab5650d99875f53580c2b1ad
 
 >>>>>>> bf59fda94392bf24ab5650d99875f53580c2b1ad
   return (
