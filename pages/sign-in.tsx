@@ -10,14 +10,6 @@ import { SIGNIN } from '../graphql/Query';
 
 const Signup: NextPage = () => {
   const router = useRouter();
-  const [signUpInfo, setSignUpInfo] = useState({
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-    occupation: "",
-    password: ""
-  })
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -27,11 +19,14 @@ const Signup: NextPage = () => {
       password: password
     }
   });
-  // console.log(data);
 
   const handleSignIn = () => {
     if(data) {
       router.push("/");
+      localStorage.setItem('id', data.login.id);
+      localStorage.setItem('token', data.login.token);
+    } else {
+      return alert("your Email or password combination are wrong!");
     }
   };
   
@@ -42,14 +37,12 @@ const Signup: NextPage = () => {
           LOGO
         </div>
         <div className={styles.signup_side}>
-          <h3 className='d-flex pt-3'>Sign In</h3>
-          <form>
+          <div className={styles.signup_container}>
+            <h3 className='d-flex pt-3 px-2'>Sign In</h3>
             <div className="form-group">
               <div className="form-control border-0">
                 <InputText label="Email" type="text" placeholder="Email"
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setEmail(e.target.value)
+                  onChange={(e) => {setEmail(e.target.value)
                   }}
                 />
               </div>
@@ -57,17 +50,13 @@ const Signup: NextPage = () => {
             <div className="form-group">
               <div className="form-control border-0">
                 <InputText label="Password" type="password" placeholder="Password"
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setPassword(e.target.value)
-                  }}
+                  onChange={(e) => {setPassword(e.target.value)}}
                 />
               </div>
             </div>
-            <div className='d-flex justify-content-end pt-2'>
-              <ButtonPrimary title="Sign In" onClick={() => handleSignIn()}/>
-            </div>
-          </form>
+          <div className='d-flex justify-content-end pt-2 px-2'>
+            <ButtonPrimary title="Sign In" onClick={() => handleSignIn()}/>
+          </div>
           <p className='text-center'>
             Don't have an account? &nbsp;
             <Link href="/sign-up">
@@ -76,6 +65,7 @@ const Signup: NextPage = () => {
               </a>
             </Link>
           </p>
+          </div>
         </div>
       </div>
     </>
