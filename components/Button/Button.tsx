@@ -8,6 +8,10 @@ export const ButtonPrimary = ({
   disabled,
   isLoading,
 }: buttonPropsType) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf59fda94392bf24ab5650d99875f53580c2b1ad
   return (
     <>
       {isLoading ? (
