@@ -13,7 +13,6 @@ import styles from "../styles/Home.module.css";
 import moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../graphql/Mutation";
-import client from "../graphql/client";
 import { Footer } from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
