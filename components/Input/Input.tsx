@@ -4,7 +4,7 @@ import style from "./Input.module.css";
 import moment from "moment";
 import { inputTextAreaType, inputTextPropsType } from "../../Types";
 
-export const InputText = ({label, type, placeholder, onChange }: inputTextPropsType) => {
+export const InputText = ({label, type, placeholder, onChange, value }: inputTextPropsType) => {
 
   return (
     <div className={style.input_custom}>
@@ -15,6 +15,7 @@ export const InputText = ({label, type, placeholder, onChange }: inputTextPropsT
         id='input-text'
         onChange={onChange}
         type={type}
+        value={value}
         placeholder={placeholder}
         className={style.input_text}
       />
@@ -22,7 +23,7 @@ export const InputText = ({label, type, placeholder, onChange }: inputTextPropsT
   );
 };
 
-export const InputTextArea = ({label, type, placeholder, onChange }: inputTextAreaType) => {
+export const InputTextArea = ({label, type, placeholder, onChange, value }: inputTextAreaType) => {
   return (
     <>
       <div className={style.input_custom}>
@@ -33,6 +34,7 @@ export const InputTextArea = ({label, type, placeholder, onChange }: inputTextAr
           className={style.input_text}
           onChange={onChange}
           id='input-textarea'
+          value={value}
           name='text-area'
           rows={4}
           cols={100}
