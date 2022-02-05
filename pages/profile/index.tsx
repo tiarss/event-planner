@@ -7,7 +7,7 @@ import { EventHosted } from "../../components/UI/EventHosted/EventHosted";
 import style from "../../styles/profile.module.css";
 
 function Profile() {
-  const [key, setKey] = useState("home");
+  const [key, setKey] = useState("hosted");
   return (
     <>
       <Head>

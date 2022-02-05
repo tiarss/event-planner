@@ -35,7 +35,7 @@ export const InputTextArea = ({label, type, placeholder, onChange }: inputTextAr
           id='input-textarea'
           name='text-area'
           rows={4}
-          cols={50}
+          cols={100}
           placeholder={placeholder}></textarea>
       </div>
     </>
