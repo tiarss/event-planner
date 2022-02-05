@@ -24,7 +24,12 @@
   align-items: center;
 }
 
-@media (max-width: 950px) {
+.signup_container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1100px) {
   .fullheight {
     flex-direction: column;
   }
@@ -39,7 +44,7 @@
   }
 }
 
-@media (max-width: 570px) {
+@media (max-width: 670px) {
   .display{
     display: inline;
   }

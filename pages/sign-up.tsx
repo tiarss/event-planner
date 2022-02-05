@@ -1,5 +1,6 @@
 import react, { useState } from 'react';
 import type { NextPage } from "next";
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { InputText } from '../components/Input/Input';
 import { ButtonPrimary } from '../components/Button/Button';
@@ -8,20 +9,13 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../graphql/Mutation';
 
 const Signup: NextPage = () => {
-  // const [signUpInfo, setSignUpInfo] = useState({
-  //   name: "",
-  //   email: "",
-  //   address: "",
-  //   phone: "",
-  //   occupation: "",
-  //   password: ""
-  // })
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [occupation, setOccupation] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
   const [newUser] = useMutation(ADD_USER);
   console.log(newUser);
@@ -38,6 +32,7 @@ const Signup: NextPage = () => {
       },
       onCompleted: (data) => {
         console.log(data);
+        router.push("/sign-in");
       },
     });
   };
@@ -49,8 +44,8 @@ const Signup: NextPage = () => {
           LOGO
         </div>
         <div className={styles.signup_side}>
-          <h3 className='d-flex pt-3'>Sign Up</h3>
-          <form>
+          <div className={styles.signup_container}>
+          <h3 className='d-flex pt-3 px-2'>Sign Up</h3>
             <div className={styles.display}>
               <div className="form-group">
                 <div className="form-control border-0">
@@ -91,11 +86,9 @@ const Signup: NextPage = () => {
                   onChange={(e) => setPassword(e.target.value)}/>
               </div>
             </div>
-            <div className='d-flex justify-content-end pt-2'>
+            <div className='d-flex justify-content-end pt-2 px-2'>
               <ButtonPrimary title="Sign Up" onClick={() => handleSignUp()}/>
-              {/* <button onClick={handleSignUp(signUpInfo)}>Sign Up</button> */}
             </div>
-          </form>
           <p className='text-center'>
             Already have an account? &nbsp;
             <Link href="/sign-in">
@@ -104,6 +97,7 @@ const Signup: NextPage = () => {
               </a>
             </Link>
           </p>
+          </div>
         </div>
       </div>
     </>

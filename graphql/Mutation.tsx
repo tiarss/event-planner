@@ -45,9 +45,8 @@ export const ADD_USER = gql`
         phone: $phone
       }
     ) {
-      code
-      message
-      success
+      name
+      email
     }
   }
 `;
