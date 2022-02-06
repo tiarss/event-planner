@@ -1,10 +1,24 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
 import { BiTargetLock, BiCalendar, BiInfoCircle } from "react-icons/bi";
+import { cardsEventType } from "../../Types";
 import { ButtonSecondary, ButtonTertier } from "../Button/Button";
 import style from "./EventCards.module.css";
+import moment from "moment";
 
-export const EventCards = () => {
+export const EventCards = ({
+  title,
+  image,
+  location,
+  date,
+  category,
+  description,
+  quota,
+  onEdit,
+  onDelete
+}: cardsEventType) => {
+  const convertDate = moment(date).format("MMMM Do YYYY, h:mm:ss");
+
   return (
     <div>
       <style type='text/css'>
@@ -29,7 +43,7 @@ export const EventCards = () => {
       </style>
       <Accordion defaultActiveKey='0' flush>
         <Accordion.Item eventKey='0'>
-          <Accordion.Header>Accordion Item #1</Accordion.Header>
+          <Accordion.Header>{title} ({quota})</Accordion.Header>
           <Accordion.Body>
             <div className={style.cards_body}>
               <div className={style.cards_left}>
@@ -37,47 +51,32 @@ export const EventCards = () => {
                   className={style.cards_image}
                   style={{
                     backgroundImage:
-                      "url(https://asset.kompas.com/crops/KwgrhXBTh3P8uTQwfNT9LDa7ETU=/0x66:1059x772/750x500/data/photo/2019/10/03/5d9585b4b313c.jpg)",
+                      `url(${image})`,
                   }}></div>
                 <div className={style.cards_details}>
                   <p className={style.cards_head}>Location</p>
                   <p>
                     <BiTargetLock className={style.icon_alignment} />
-                    &nbsp;
+                    &nbsp;{location}
                   </p>
                   <p className={style.cards_head}>Date</p>
                   <p>
                     <BiCalendar className={style.icon_alignment} />
-                    &nbsp;
+                    &nbsp;{convertDate}
                   </p>
                   <p className={style.cards_head}>Category</p>
                   <p>
                     <BiInfoCircle className={style.icon_alignment} />
-                    &nbsp;
+                    &nbsp;{category}
                   </p>
                 </div>
               </div>
               <div className={style.cards_right}>
                 <p className={style.cards_head}>Details</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  sit amet erat ultrices, pulvinar libero eu, fringilla ante.
-                  Etiam tincidunt leo ut turpis elementum, nec placerat libero
-                  laoreet. Suspendisse ullamcorper dolor et bibendum vulputate.
-                  Integer faucibus urna id lorem facilisis viverra. In nec quam
-                  neque. Aliquam fermentum sapien sed tellus dignissim commodo.
-                  Ut aliquam sapien sapien. Etiam faucibus non urna eget
-                  elementum. Pellentesque a ipsum nisi. Curabitur quis luctus
-                  sapien. Nullam rhoncus lectus vel egestas interdum. Aliquam
-                  dignissim odio non nisi bibendum iaculis. Vivamus venenatis,
-                  lectus ac ullamcorper ullamcorper, augue leo fermentum elit,
-                  at lobortis libero orci eu elit. Aenean mi elit, iaculis sed
-                  accumsan quis, feugiat at lorem. Quisque consequat vestibulum
-                  libero ac tempor.
-                </p>
+                <p>{description}</p>
                 <div className={style.button_group}>
-                  <ButtonSecondary title="Edit Event" />
-                  <ButtonTertier title="Delete Event" />
+                  <ButtonSecondary title='Edit Event' onClick={onEdit} />
+                  <ButtonTertier title='Delete Event' onClick={onDelete}/>
                 </div>
               </div>
             </div>
