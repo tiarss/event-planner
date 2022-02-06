@@ -15,9 +15,28 @@ export const SIGNIN = gql`
   }
 `;
 
-export const GET_ALL_EVENTS = gql`
-  query{
-    getEvents{
+export const GET_ALL_EVENTS_PAGINATE = gql`
+  query (
+    $limit: Int!,
+    $offset: Int!
+  ) {
+    getPaginationEvents(limit: $limit, offset: $offset){
+        id
+        userID
+        image
+        title
+        description
+        date
+        quota
+    }
+  }
+`;
+
+export const GET_EVENTS_BY_SEARCH = gql`
+  query (
+    $search: String!
+  ) {
+    getEventsBySearch(search: $search){
         id
         userID
         image
