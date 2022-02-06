@@ -19,7 +19,7 @@ const Search: NextPage = () => {
     return (date.getFullYear()+
     " "+(new Intl.DateTimeFormat('en-US', { month: "short" }).format(date))+
     " "+date.getDate()+
-    ", "+date.getHours()+
+    ", "+(new Intl.DateTimeFormat('id', { hour: "2-digit" }).format(date))+
     ":"+(new Intl.DateTimeFormat('en-US', { minute: "2-digit" }).format(date))+
     " WIB")
   }
@@ -47,7 +47,10 @@ const Search: NextPage = () => {
         <div className="d-flex container px-2 flex-wrap">
           {data.getEvents.map((e: any) => (
             <div key={e.id} className="p-2">
-              <CardsHome title={e.title} location={e.location} image={e.image}
+              <CardsHome
+                title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                location={e.location}
+                image={e.image}
                 date={toTimestamp(e.date)}/>
             </div>
           ))}
