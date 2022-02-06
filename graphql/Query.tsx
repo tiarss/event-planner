@@ -14,3 +14,16 @@ export const SIGNIN = gql`
     }
   }
 `;
+
+export const GET_ALL_EVENTS = gql`
+  query{
+    getEvents{
+        id
+        userID
+        image
+        title
+        location
+        date
+    }
+  }
+`;

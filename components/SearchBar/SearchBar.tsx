@@ -1,9 +1,9 @@
 import React from "react";
 import { inputSearchPropsType } from "../../Types";
 import { ButtonPrimary } from "../Button/Button";
-import style from "./Search.module.css";
+import style from "./SearchBar.module.css";
 
-export const Search = ({
+export const SearchBar = ({
   label,
   onChange
 }: inputSearchPropsType) => {
