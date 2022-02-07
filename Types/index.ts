@@ -127,4 +127,3 @@ export type inputSelectPropsType = {
   option?: string[];
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-
