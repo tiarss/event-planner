@@ -9,7 +9,7 @@ import { CardsHome } from '../components/CardsHome/CardsHome';
 import { ButtonPrimary } from '../components/Button/Button';
 import { GET_MOST_ATTENDANT_EVENTS, GET_JOINABLE_EVENTS ,GET_EVENTS_BY_SEARCH } from '../graphql/Query';
 
-function Home() {
+const Home = () => {
   // const token = localStorage.getItem('token');
   const router = useRouter();
   const limit: number = 3;
@@ -17,24 +17,55 @@ function Home() {
   var currentSearchValue = "";
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const {loading: loadingAttendant, error: errorAttendant, data: dataAttendant} = useQuery(GET_MOST_ATTENDANT_EVENTS);
+  const {loading: loadingAttendant, data: dataAttendant} = useQuery(GET_MOST_ATTENDANT_EVENTS);
 
-  const {loading: loadingJoinable, error: errorJoinable, data: dataJoinable} = useQuery(GET_JOINABLE_EVENTS);
+  const {data: dataJoinable} = useQuery(GET_JOINABLE_EVENTS);
   
-  // const {loading, error, data} = useQuery(GET_EVENTS_BY_SEARCH, {
-  //   variables: {
-  //     search: searchValue
-  //   }
-  // });
+  const {loading, error, data} = useQuery(GET_EVENTS_BY_SEARCH, {
+    variables: {
+      search: searchValue
+    }
+  });
 
   console.log(`attendant: ${dataAttendant}`);
   console.log(`joinable: ${dataJoinable}`);
 
-  if(loadingAttendant && loadingJoinable) {
+  if (loadingAttendant) {
     return (
       <p>loading</p>
     )
-  } else {
+  } else if (data && searchValue !== "") {
+    return (
+      <>
+        <div className="d-flex py-2 justify-content-center align-items-center">
+          <SearchBar onChange={(e) => currentSearchValue=e.target.value}/>
+          <span>
+            <ButtonPrimary title="Search" onClick={() => setSearchValue(currentSearchValue)}/>
+          </span>
+        </div>
+        <div className='d-flex container w-75 px-4 pt-4 pb-2'>
+          <h3>Our result of "<em>{searchValue}</em>"</h3>
+        </div>
+        <div className="d-flex container justify-content-center w-75">
+          <div className="d-flex container px-2 flex-wrap">
+            {data.getEventsBySearch.map((e: any) => (
+              <div key={e.id} className="p-2">
+                <Link href={`detail/${e.id}`}>
+                  <a>
+                    <CardsHome
+                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                      location={e.location}
+                      image={e.image}
+                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                  </a>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    )
+  } else if (dataAttendant) {
     return (
       <>
         <div className="d-flex py-2 justify-content-center align-items-center">
@@ -50,11 +81,15 @@ function Home() {
           <div className="d-flex container px-2 flex-wrap">
             {dataAttendant.getEventMostAttendant.map((e: any) => (
               <div key={e.id} className="p-2">
-                <CardsHome
-                  title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
-                  location={e.location}
-                  image={e.image}
-                  date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                <Link href={`detail/${e.id}`}>
+                  <a>
+                    <CardsHome
+                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                      location={e.location}
+                      image={e.image}
+                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
@@ -65,20 +100,24 @@ function Home() {
         </div>
         <div className="d-flex container justify-content-center w-75">
           <div className="d-flex container px-2 flex-wrap">
-            {dataJoinable.getEventMostAttendant.map((e: any) => (
+            {dataJoinable.getJoinableEvents.map((e: any) => (
               <div key={e.id} className="p-2">
-                <CardsHome
-                  title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
-                  location={e.location}
-                  image={e.image}
-                  date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                <Link href={`detail/${e.id}`}>
+                  <a>
+                    <CardsHome
+                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                      location={e.location}
+                      image={e.image}
+                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </>
     )
-  }
+  } 
 }
 
 export default Home;

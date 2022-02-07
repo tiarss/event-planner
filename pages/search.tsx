@@ -19,7 +19,7 @@ const Search: NextPage = () => {
   var currentSearchValue = "";
   const [searchValue, setSearchValue] = useState<string>("");
   
-  const {loading: loadingPaginate, data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {
+  const {data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {
     variables: {  
       limit: limit,
       offset: offset
@@ -28,14 +28,57 @@ const Search: NextPage = () => {
   
   const [search, {loading: loadingSearch, data: dataSearch}] = useLazyQuery(GET_EVENTS_BY_SEARCH);
 
-  console.log(`page: ${dataPaginate}`);
-  console.log(`search: ${dataSearch}`);
-
   if(loadingSearch) {
     return (
       <p>loading</p>
     )
-  } else {
+  } else if(dataSearch && searchValue !== "") {
+    return (
+      <>
+        <div className="d-flex py-2 justify-content-center align-items-center">
+          <SearchBar onChange={(e) => setSearchValue(e.target.value)}/>
+          <span
+            className={styles.search_button}>
+            <ButtonPrimary title="Search" onClick={() => search({ variables: { search: searchValue } })}/>
+          </span>
+        </div>
+        <div className='d-flex container w-75 px-4 pt-4 pb-2'>
+          <h3>Our result of "<em>{searchValue}</em>"</h3>
+        </div>
+        <div className="d-flex container justify-content-center w-75">
+          <div className="d-flex container px-2 flex-wrap">
+            {dataSearch.getEventsBySearch.map((e: any) => (
+              <div key={e.id} className="p-2">
+                <Link href={`detail/${e.id}`}>
+                  <a>
+                    <CardsHome
+                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                      location={e.location}
+                      image={e.image}
+                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                  </a>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="d-flex container w-75 justify-content-end align-items-center px-5 py-2">
+          <div className="px-2">prev</div>
+          <div className={styles.prev_button} onClick={() => setOffset(offset-limit)}>
+            <div className={styles.icon_positioning}>
+              <AiOutlineLeft />
+            </div>
+          </div>
+          <div className={styles.next_button} onClick={() => setOffset(offset+limit)}>
+            <div className={styles.icon_positioning}>
+              <AiOutlineRight />
+            </div>
+          </div>
+          <div className="px-2">next</div>
+        </div>
+      </>
+    )
+  } else if (dataPaginate) {
     return (
       <>
         <div className="d-flex py-2 justify-content-center align-items-center">
@@ -50,25 +93,29 @@ const Search: NextPage = () => {
         </div>
         <div className="d-flex container justify-content-center w-75">
           <div className="d-flex container px-2 flex-wrap">
-            {/* {dataPaginate.getPaginationEvents.map((e: any) => (
+            {dataPaginate.getPaginationEvents.map((e: any) => (
               <div key={e.id} className="p-2">
-                <CardsHome
-                  title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
-                  location={e.location}
-                  image={e.image}
-                  date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                <Link href={`detail/${e.id}`}>
+                  <a>
+                    <CardsHome
+                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                      location={e.location}
+                      image={e.image}
+                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                  </a>
+                </Link>
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
         <div className="d-flex container w-75 justify-content-end align-items-center px-5 py-2">
           <div className="px-2">prev</div>
-          <div className={styles.prev_button} onClick={() => setOffset(offset+limit)}>
+          <div className={styles.prev_button} onClick={() => setOffset(offset-limit)}>
             <div className={styles.icon_positioning}>
               <AiOutlineLeft />
             </div>
           </div>
-          <div className={styles.next_button} onClick={() => setOffset(offset-limit)}>
+          <div className={styles.next_button} onClick={() => setOffset(offset+limit)}>
             <div className={styles.icon_positioning}>
               <AiOutlineRight />
             </div>
@@ -77,6 +124,8 @@ const Search: NextPage = () => {
         </div>
       </>
     )
+  } else {
+    return null;
   }
 }
 
