@@ -18,7 +18,6 @@ const Signup: NextPage = () => {
   const router = useRouter();
 
   const [newUser] = useMutation(ADD_USER);
-  console.log(newUser);
 
   const handleSignUp = () => {
     newUser({
@@ -31,7 +30,6 @@ const Signup: NextPage = () => {
         password: password,
       },
       onCompleted: (data) => {
-        console.log(data);
         router.push("/sign-in");
       },
     });

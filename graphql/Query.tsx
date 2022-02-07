@@ -65,7 +65,7 @@ export const GET_ALL_EVENTS_PAGINATE = gql`
     $limit: Int!,
     $offset: Int!
   ) {
-    getPaginationEvents(limit: $limit, offset: $offset){
+    getPaginationEvents (limit: $limit, offset: $offset) {
         id
         userID
         image
@@ -103,14 +103,40 @@ export const GET_EVENTS_BY_SEARCH = gql`
   query (
     $search: String!
   ) {
-    getEventsBySearch(search: $search){
+    getEventsBySearch (search: $search) {
         id
         userID
         image
         title
         location
         date
+    }
+  }
+`;
 
+export const GET_MOST_ATTENDANT_EVENTS = gql`
+  query {
+    getEventMostAttendant {
+      id
+      userID
+      image
+      title
+      description
+      date
+      quota
+      location
+    }
+  }
+`;
+
+export const GET_JOINABLE_EVENTS = gql`
+  query {
+    getJoinableEvents {
+      id
+      image
+      title
+      date
+      location
     }
   }
 `;

@@ -15,9 +15,9 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState<string>("");
 
   const {loading: loadingAttendant, data: dataAttendant} = useQuery(GET_MOST_ATTENDANT_EVENTS);
-  
-  const {data: dataJoinable} = useQuery(GET_JOINABLE_EVENTS);
 
+  const {data: dataJoinable} = useQuery(GET_JOINABLE_EVENTS);
+  
   const {loading, error, data} = useQuery(GET_EVENTS_BY_SEARCH, {
     variables: {
       search: searchValue
@@ -40,7 +40,7 @@ const Home = () => {
             <ButtonPrimary title="Search" onClick={() => setSearchValue(currentSearchValue)}/>
           </span>
         </div>
-         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
+        <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>Our result of "<em>{searchValue}</em>"</h3>
         </div>
         <div className="d-flex container justify-content-center w-75">
@@ -70,7 +70,7 @@ const Home = () => {
           <span>
             <ButtonPrimary title="Search" onClick={() => setSearchValue(currentSearchValue)}/>
           </span>
-          </div>
+        </div>
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>Most Attendant</h3>
         </div>

@@ -43,8 +43,7 @@ const Signin: NextPage = () => {
             <div className="form-group">
               <div className="form-control border-0">
                 <InputText label="Password" type="password" placeholder="Password"
-                  onChange={(e) => {setPassword(e.target.value)
-                  }}
+                  onChange={(e) => {setPassword(e.target.value)}}
                 />
               </div>
             </div>
@@ -67,4 +66,8 @@ const Signin: NextPage = () => {
   )
 }
 
+<<<<<<< HEAD
 export default Signin;
+=======
+export default Signup;
+>>>>>>> branch-farand
