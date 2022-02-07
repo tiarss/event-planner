@@ -11,7 +11,12 @@
 .logo_side {
   display: flex;
   width: 40%;
-  background-color: aqua;
+  background: rgb(195, 231, 142);
+  background: linear-gradient(
+    180deg,
+    rgba(195, 231, 142, 1) 0%,
+    rgba(125, 236, 224, 1) 100%
+  );
   justify-content: center;
   align-items: center;
 }
@@ -45,7 +50,7 @@
 }
 
 @media (max-width: 670px) {
-  .display{
+  .display {
     display: inline;
   }
 }

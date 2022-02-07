@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import { Router, useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import style from "./Header.module.css";
 
 export const Header = () => {
+  const route = useRouter();
+  console.log(route.route);
   const [isOpen, setIsOpen] = useState(false);
   const [isAuth] = useState(true);
   const handleOpen = () => setIsOpen(!isOpen);
+  const [small, setSmall] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", () =>
+        setSmall(window.pageYOffset > 50)
+      );
+    }
+  }, []);
 
   return (
-    <div className={style.header_main}>
+    <div
+      className={
+        route.route === "/search" || route.route === "/"
+          ? small
+            ? style.header_main
+            : style.header_main_scroll
+          : style.header_main_second
+      }>
       <div className={style.header_logo}>
         <p>Logo</p>
       </div>
