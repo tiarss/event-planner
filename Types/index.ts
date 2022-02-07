@@ -65,6 +65,7 @@ export type modalProfilePropsType = {
   onChangeAddress?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePhone?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeOccupation?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeAvatar?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmitEdit?: () => void;
   onClose?: () => void;
 };

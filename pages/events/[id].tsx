@@ -3,6 +3,7 @@ import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ButtonSecondary } from "../../components/Button/Button";
 import { CardsComment } from "../../components/CardsComment/CardsComment";
 import { CardsDetail } from "../../components/CardsDetail/CardsDetail";
@@ -26,7 +27,7 @@ function DetailsEvent() {
   const { loading, error, data } = useQuery(GET_EVENT_BY_ID, {
     variables: { id: id },
   });
-
+  console.log(data);
   const {
     loading: loadingComments,
     data: dataComments,
@@ -80,7 +81,7 @@ function DetailsEvent() {
         <Header />
         <div className={style.details_body}>
           <h1>{data.getEvent.title}</h1>
-          <h5>Hosted by {}</h5>
+          <h5>Hosted by {data.getEvent.user.name}</h5>
           <div
             className={style.details_hero}
             style={{
@@ -99,11 +100,25 @@ function DetailsEvent() {
                 </div>
               ) : (
                 <div>
-                  <h5>Attendees (8)</h5>
+                  <h5>Attendees ({dataParticipant.getParticipants.length})</h5>
                   <div className={style.details_participant}>
-                    <div className={style.details_avatar}>
-                      <p>John Smith</p>
-                    </div>
+                    {dataParticipant.getParticipants.map(
+                      (value: any, index: any) => (
+                        <OverlayTrigger
+                          key={index}
+                          placement='top'
+                          delay={{ show: 250, hide: 400 }}
+                          overlay={
+                            <Tooltip id='button-tooltip'>{value.user.name}</Tooltip>
+                          }>
+                          <div
+                            className={style.details_avatar}
+                            style={{
+                              backgroundImage: `url(${value.user.avatar})`,
+                            }}></div>
+                        </OverlayTrigger>
+                      )
+                    )}
                   </div>
                 </div>
               )}

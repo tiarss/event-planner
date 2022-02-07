@@ -1,4 +1,32 @@
 .header_main {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  background-color: #79e2b3;
+  padding: 00px 100px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+}
+
+.header_main_scroll {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  background-color: none;
+  padding: 00px 100px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+}
+
+.header_main_second {
   position: sticky;
   z-index: 10;
   top: 0px;
@@ -9,6 +37,7 @@
   padding: 00px 100px;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.5s ease;
 }
 
 .header_logo > p {
@@ -24,7 +53,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  background-color: #79e2b3;
+  background-color: none;
   padding: 7px 10px;
   border: 2px solid rgba(172, 163, 163, 0);
   border-radius: 10px;

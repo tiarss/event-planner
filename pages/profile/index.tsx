@@ -28,6 +28,7 @@ function Profile() {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [occupation, setOccupation] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const [editProfile, { loading, error, data: dataUpdate }] =
@@ -42,7 +43,7 @@ function Profile() {
       query: GET_OWN_PROFILE,
       context: {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       },
     });
@@ -51,10 +52,11 @@ function Profile() {
     setAddress(data.getProfile.address);
     setOccupation(data.getProfile.occupation);
     setPhone(data.getProfile.phone);
-    setIsLoading(false)
+    setAvatar(data.getProfile.avatar);
+    console.log(data);
+    setIsLoading(false);
   };
 
-  console.log(phone);
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setName(value);
@@ -80,6 +82,11 @@ function Profile() {
     setOccupation(value);
   };
 
+  const handleChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setAvatar(value);
+  };
+
   const handleOpenEdit = () => {
     setModalShow(true);
     // setName(data.getProfile.name);
@@ -95,6 +102,7 @@ function Profile() {
     address: address,
     phone: phone,
     occupation: occupation,
+    avatar: avatar,
   };
 
   const handleEditProfile = () => {
@@ -105,9 +113,15 @@ function Profile() {
         address: address,
         occupation: occupation,
         phone: phone,
+        avatar: avatar,
       },
       onCompleted: (data) => {
         console.log(data);
+      },
+      context: {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       },
     });
   };
@@ -135,7 +149,9 @@ function Profile() {
               </div>
             </div>
             <div className={style.profile_info}>
-              <div className={style.profile_pic}></div>
+              <div
+                style={{ backgroundImage: `url(${avatar})` }}
+                className={style.profile_pic}></div>
               <div>
                 <h5>My Name</h5>
                 <p>{name}</p>
@@ -173,6 +189,7 @@ function Profile() {
           onChangeAddress={handleChangeAddress}
           onChangeOccupation={handleChangeOccupation}
           onChangePhone={handleChangePhone}
+          onChangeAvatar={handleChangeAvatar}
           onClose={() => setModalShow(false)}
           onSubmitEdit={handleEditProfile}
         />
@@ -189,6 +206,7 @@ function EditProfileModal({
   onChangePhone,
   onChangeAddress,
   onChangeOccupation,
+  onChangeAvatar,
   onSubmitEdit,
   onClose,
 }: modalProfilePropsType) {
@@ -249,6 +267,13 @@ function EditProfileModal({
                 onChange={onChangeAddress}
                 type='text'
                 placeholder='Enter Your Address'
+              />
+              <InputText
+                label='Link Avatar'
+                value={data?.avatar}
+                onChange={onChangeAvatar}
+                type='text'
+                placeholder='Enter Link Avatar'
               />
             </div>
           </div>

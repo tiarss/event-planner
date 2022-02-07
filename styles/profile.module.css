@@ -22,6 +22,8 @@
   height: 150px;
   border-radius: 10px;
   background-color: #b7e691;
+  background-size: cover;
+  background-position: center;
 }
 
 .profile_info {

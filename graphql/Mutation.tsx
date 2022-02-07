@@ -35,6 +35,7 @@ export const UPDATE_USER = gql`
     $address: String!
     $phone: String!
     $occupation: String!
+    $avatar: String!
   ) {
     updateUser(
       input: {
@@ -43,6 +44,7 @@ export const UPDATE_USER = gql`
         address: $address
         occupation: $occupation
         phone: $phone
+        avatar: $avatar
       }
     ) {
       code
@@ -92,15 +94,15 @@ export const DELETE_EVENT = gql`
   }
 `;
 
-export const ADD_COMMENT = gql `
-mutation ($eventID: Int!, $content: String!) {
-  createComment(input: {eventID: $eventID, content: $content}) {
-    code
-    message
-    success
+export const ADD_COMMENT = gql`
+  mutation ($eventID: Int!, $content: String!) {
+    createComment(input: { eventID: $eventID, content: $content }) {
+      code
+      message
+      success
+    }
   }
-}
-`
+`;
 
 export const ADD_USER = gql`
   mutation (
@@ -111,18 +113,28 @@ export const ADD_USER = gql`
     $occupation: String!
     $phone: String!
   ) {
-    register (
+    register(
       input: {
-        name: $name, 
-        email: $email, 
-        password: $password, 
-        address: $address, 
-        occupation: $occupation, 
+        name: $name
+        email: $email
+        password: $password
+        address: $address
+        occupation: $occupation
         phone: $phone
       }
     ) {
       name
       email
+    }
+  }
+`;
+
+export const JOIN_EVENT = gql`
+  mutation{
+    createParticipant(input: { eventID: 1, status: false }) {
+      code
+      message
+      success
     }
   }
 `;

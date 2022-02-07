@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-
 export const GET_OWN_PROFILE = gql`
   query {
     getProfile {
@@ -10,24 +9,19 @@ export const GET_OWN_PROFILE = gql`
       address
       occupation
       phone
-      }
-}`
+      avatar
+    }
+  }
+`;
 
 export const SIGNIN = gql`
-  query (
-    $email: String!,
-    $password: String!
-  ) {
-    login (
-      email: $email, 
-      password: $password
-    ) {
+  query ($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       id
       token
     }
   }
 `;
-
 
 export const GET_OWN_EVENT = gql`
   query {
@@ -57,8 +51,13 @@ export const GET_EVENT_BY_ID = gql`
       categoryID
       date
       quota
+      user {
+        id
+        name
+      }
     }
-  }`
+  }
+`;
 
 export const GET_ALL_EVENTS_PAGINATE = gql`
   query (
@@ -76,7 +75,6 @@ export const GET_ALL_EVENTS_PAGINATE = gql`
     }
   }
 `;
-
 
 export const GET_COMMENTS_BY_ID = gql`
   query ($eventID: Int!) {
@@ -96,8 +94,13 @@ export const GET_PARTICIPANT_BY_ID = gql`
       userID
       eventID
       status
+      user {
+        name
+        avatar
+      }
+    }
   }
-}`
+`;
 
 export const GET_EVENTS_BY_SEARCH = gql`
   query (

@@ -1,6 +1,8 @@
-import react, { useState } from 'react';
+import react, { useState } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { Header } from "../components/Header/Header";
+import { Footer } from "../components/Footer/Footer";
 import { useRouter } from 'next/router';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import { GET_ALL_EVENTS_PAGINATE, GET_EVENTS_BY_SEARCH } from '../graphql/Query';
@@ -117,6 +119,7 @@ const Search: NextPage = () => {
             <div className={styles.icon_positioning}>
               <AiOutlineRight />
             </div>
+
           </div>
           <div className="px-2">next</div>
         </div>
