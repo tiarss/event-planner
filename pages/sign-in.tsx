@@ -66,8 +66,4 @@ const Signin: NextPage = () => {
   )
 }
 
-<<<<<<< HEAD
 export default Signin;
-=======
-export default Signup;
->>>>>>> branch-farand
