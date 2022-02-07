@@ -36,11 +36,13 @@
 .details_avatar {
   width: 100px;
   height: 100px;
-  background-color: thistle;
+  /* background-color: thistle; */
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  background-position: center;
 }
 
 .details_avatar > p {
