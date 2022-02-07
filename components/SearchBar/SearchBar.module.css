@@ -1,0 +1,31 @@
+.input_custom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  position: relative;
+  min-width: 500px;
+}
+
+.input_label {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.input_text {
+  padding:  8px min(50px, 10vw);
+  border-radius: 50px;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  height: 60px;
+}
+
+.input_text::placeholder {
+  font-family: 'Outfit', sans-serif;
+}
+
+@media (max-width: 600px) {
+  .input_custom {
+    min-width: 300px;
+  }
+}

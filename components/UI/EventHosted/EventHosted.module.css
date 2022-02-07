@@ -1,0 +1,14 @@
+.event_hosted_head{
+   margin-bottom: 0px;
+   font-weight: 600;
+   font-size: 28px;
+}
+
+.event_list{
+   padding: 20px;
+   height: 100vh;
+   overflow-y: scroll;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
