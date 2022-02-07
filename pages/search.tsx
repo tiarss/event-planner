@@ -12,11 +12,9 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import styles from '../styles/Search.module.css';
 
 const Search: NextPage = () => {
-  // const token = localStorage.getItem('token');
   const router = useRouter();
   const limit: number = 3;
   const [offset, setOffset] = useState<number>(0);
-  var currentSearchValue = "";
   const [searchValue, setSearchValue] = useState<string>("");
   
   const {data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {

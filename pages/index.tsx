@@ -10,10 +10,7 @@ import { ButtonPrimary } from '../components/Button/Button';
 import { GET_MOST_ATTENDANT_EVENTS, GET_JOINABLE_EVENTS ,GET_EVENTS_BY_SEARCH } from '../graphql/Query';
 
 const Home = () => {
-  // const token = localStorage.getItem('token');
   const router = useRouter();
-  const limit: number = 3;
-  const [offset, setOffset] = useState<number>(0);
   var currentSearchValue = "";
   const [searchValue, setSearchValue] = useState<string>("");
 
