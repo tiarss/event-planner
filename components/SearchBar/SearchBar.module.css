@@ -4,6 +4,7 @@
   gap: 10px;
   font-family: 'Outfit', sans-serif;
   position: relative;
+  min-width: 500px;
 }
 
 .input_label {
@@ -16,15 +17,15 @@
   border-radius: 50px;
   outline: none;
   font-family: 'Outfit', sans-serif;
-  height: 70px;
+  height: 60px;
 }
 
 .input_text::placeholder {
   font-family: 'Outfit', sans-serif;
 }
 
-.search_button {
-  position: absolute;
-  right: 20px;
-  top: 14px;
+@media (max-width: 600px) {
+  .input_custom {
+    min-width: 300px;
+  }
 }
