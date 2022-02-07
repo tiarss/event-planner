@@ -37,13 +37,21 @@ const Search: NextPage = () => {
   } else if (dataSearch && searchValue !== "") {
     return (
       <>
-        <div className='d-flex py-2 justify-content-center align-items-center'>
+         <Header />
+        <div className={styles.banner}>
+          <p>
+            Create. Attend. <br /> Join
+          </p>
+        </div>
+        <div
+          className={styles.search_bar}
+          style={{ position: "relative", width: "fit-content" }}>
           <SearchBar onChange={(e) => setSearchValue(e.target.value)} />
           <span className={styles.search_button}>
             <ButtonPrimary
               title='Search'
-              onClick={() => search({ variables: { search: searchValue } })}
-            />
+              isLoading={loadingSearch}
+              onClick={() => search({ variables: { search: searchValue } })} />
           </span>
         </div>
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>

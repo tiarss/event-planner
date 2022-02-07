@@ -50,6 +50,9 @@
 }
 
 @media (max-width: 670px) {
+  .fullheight{
+    height: fit-content;
+  }
   .display {
     display: inline;
   }
