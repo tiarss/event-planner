@@ -46,3 +46,31 @@ export const GET_EVENTS_BY_SEARCH = gql`
     }
   }
 `;
+
+export const GET_MOST_ATTENDANT_EVENTS = gql`
+  query {
+    getEventMostAttendant {
+      id
+      userID
+      image
+      title
+      description
+      date
+      quota
+    }
+  }
+`;
+
+export const GET_JOINABLE_EVENTS = gql`
+  query{
+    getJoinableEvents{
+        id
+        userID
+        image
+        title
+        description
+        date
+        quota
+    }
+  }
+`;
