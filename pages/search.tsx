@@ -49,7 +49,7 @@ const Search: NextPage = () => {
           <div className="d-flex container px-2 flex-wrap">
             {dataSearch.getEventsBySearch.map((e: any) => (
               <div key={e.id} className="p-2">
-                <Link href={`detail/${e.id}`}>
+                <Link href={`events/${e.id}`}>
                   <a>
                     <CardsHome
                       title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
@@ -95,7 +95,7 @@ const Search: NextPage = () => {
           <div className="d-flex container px-2 flex-wrap">
             {dataPaginate.getPaginationEvents.map((e: any) => (
               <div key={e.id} className="p-2">
-                <Link href={`detail/${e.id}`}>
+                <Link href={`events/${e.id}`}>
                   <a>
                     <CardsHome
                       title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
