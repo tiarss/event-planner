@@ -25,3 +25,28 @@ export const ADD_EVENT = gql`
     }
   }
 `;
+
+export const ADD_USER = gql`
+  mutation (
+    $name: String!
+    $email: String!
+    $password: String!
+    $address: String!
+    $occupation: String!
+    $phone: String!
+  ) {
+    register (
+      input: {
+        name: $name, 
+        email: $email, 
+        password: $password, 
+        address: $address, 
+        occupation: $occupation, 
+        phone: $phone
+      }
+    ) {
+      name
+      email
+    }
+  }
+`;

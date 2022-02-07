@@ -45,3 +45,9 @@ export type inputSearchPropsType = {
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+export type inputSelectPropsType = {
+  label?: string;
+  option?: string[];
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}

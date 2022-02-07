@@ -1,0 +1,77 @@
+.prev_button {
+  cursor: pointer;
+  background-color: #79e2b3;
+  outline: none;
+  border: 2px solid #79e2b3;
+  color: #25282b;
+  margin-right: 10px;
+  padding: 7px 7px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 14px; /* Testing awal */
+  border-radius: 5px;
+  transition: all 0.4s ease;
+}
+
+.prev_button:hover {
+  background-color: #7cebb9;
+  border: 2px solid #7cebb9;
+  color: #25282b;
+}
+
+.prev_button:active {
+  background-color: #a1ebc9;
+  border: 2px solid #a1ebc9;
+}
+
+.prev_button:disabled {
+  cursor: not-allowed;
+  background-color: rgb(192, 192, 192);
+  color: grey;
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.next_button {
+  cursor: pointer;
+  background-color: white;
+  outline: none;
+  border: 2px solid #79e2b3;
+  color: #25282b;
+  margin-right: 0px;
+  padding: 7px 7px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 14px; /* Testing awal */
+  border-radius: 5px;
+  transition: all 0.4s ease;
+}
+
+.next_button:hover {
+  background-color: #7cebb9;
+  color: #25282b;
+}
+
+.next_button:active {
+  background-color: #a1ebc9;
+  border: 2px solid #a1ebc9;
+}
+
+.next_button:disabled {
+  cursor: not-allowed;
+  background-color: rgb(192, 192, 192);
+  color: grey;
+  border: 2px solid rgb(192, 192, 192);
+}
+
+.icon_positioning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+/* .search_button {
+  position: absolute;
+  left: 59vw;
+} */
