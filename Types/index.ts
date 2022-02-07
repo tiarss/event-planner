@@ -48,6 +48,7 @@ export type inputSearchPropsType = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+
 interface dataModalProfileProps {
   name?: string;
   email?: string;

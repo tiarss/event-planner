@@ -58,7 +58,7 @@ const Signup: NextPage = () => {
             <ButtonPrimary title="Sign In" onClick={() => handleSignIn()}/>
           </div>
           <p className='text-center'>
-            {"Don't have an account?"}
+            {"Don't have an Account"}
             <Link href="/sign-up">
               <a>
                 <strong>Sign Up Here</strong>

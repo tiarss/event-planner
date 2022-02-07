@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+
 export const GET_OWN_PROFILE = gql`
   query {
     getProfile {
@@ -26,6 +27,7 @@ export const SIGNIN = gql`
     }
   }
 `;
+
 
 export const GET_OWN_EVENT = gql`
   query {
