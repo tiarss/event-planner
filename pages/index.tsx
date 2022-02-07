@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/client';
+import moment from 'moment';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { CardsHome } from '../components/CardsHome/CardsHome';
 import { ButtonPrimary } from '../components/Button/Button';
@@ -15,17 +16,6 @@ const Home: NextPage = () => {
   const [offset, setOffset] = useState<number>(0);
   var currentSearchValue = "";
   const [searchValue, setSearchValue] = useState<string>("");
-  
-  const toTimestamp = (strDate: string) => {  
-    const dt = new Date(strDate).getTime();
-    const date = new Date(dt);
-    return (date.getFullYear()+
-    " "+(new Intl.DateTimeFormat('en-US', { month: "short" }).format(date))+
-    " "+date.getDate()+
-    ", "+(new Intl.DateTimeFormat('id', { hour: "2-digit" }).format(date))+
-    ":"+(new Intl.DateTimeFormat('en-US', { minute: "2-digit" }).format(date))+
-    " WIB")
-  }
 
   const {loading, error, data} = useQuery(GET_MOST_ATTENDANT_EVENTS);
 
@@ -62,7 +52,7 @@ const Home: NextPage = () => {
                 title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
                 location={e.location}
                 image={e.image}
-                date={toTimestamp(e.date)}/>
+                date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
             </div>
           ))}
         </div>
@@ -79,7 +69,7 @@ const Home: NextPage = () => {
                 title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
                 location={e.location}
                 image={e.image}
-                date={toTimestamp(e.date)}/>
+                date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
             </div>
           ))}
         </div>
