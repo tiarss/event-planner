@@ -13,7 +13,6 @@ import styles from "../styles/Home.module.css";
 import moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../graphql/Mutation";
-import client from "../graphql/client";
 import { Footer } from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
@@ -83,20 +82,17 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      {/* <div style={{display: "flex", gap:"25px", flexWrap: "wrap", padding: "0px 100px"}}>
+      <div
+        style={{
+          marginTop: "10px",
+          padding: "0px 100px",
+        }}>
+        {/* <CardsHome />
         <CardsHome />
         <CardsHome />
-        <CardsHome />
-        <CardsHome />
-      </div> */}
-
-      {/* title:"seminar golang",
-        image:"gambar",
-        description:"belajar golang",
-        location:"jakarta",
-        date:"2018-09-22T19:42:31+07:00",
-        quota:500 */}
-      <EventCards />
+        <CardsHome /> */}
+        <EventCards />
+      </div>
       <div className='p-3 w-50 d-flex flex-column mb-5'>
         <label htmlFor=''>title</label>
         <input type='text' onChange={handleChangeTitle} />
