@@ -110,11 +110,11 @@ const Home = () => {
             />
           </span>
         </div>
-        <div className='d-flex container w-75 px-4 pt-4 pb-2'>
-          <h3>Most Attendant</h3>
+        <div className='d-flex container w-100 px-4 pt-4 pb-4'>
+          <h3 className={styles.h3_text} >Most Attendant</h3>
         </div>
-        <div className="d-flex container justify-content-center w-75">
-          <div className="d-flex container px-2 flex-wrap">
+        <div className="d-flex container justify-content-center w-100 pb-5">
+          <div className="d-flex container justify-content-center justify-content-md-start px-2 flex-wrap">
             {loadingAttendant ? <p>loading</p> : dataAttendant.getEventMostAttendant.map((e: any) => (
               <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
@@ -135,12 +135,12 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <div className='d-flex container justify-content-between align-items-center w-75 px-4 pt-4 pb-2'>
-          <h3>Join These Events</h3>
+        <div className='d-flex container justify-content-between align-items-center w-100 px-4 pt-4 pb-4'>
+          <h3 className={styles.h3_text}>Join These Events</h3>
           <h6><Link href="/search"><a className='text-dark text-decoration-none'>See All Events</a></Link></h6>
         </div>
-        <div className="d-flex container justify-content-center w-75">
-          <div className="d-flex container px-2 flex-wrap">
+        <div className="d-flex container justify-content-center w-100 pb-5">
+          <div className="d-flex container justify-content-center justify-content-md-start px-2 flex-wrap">
             {loadingJoinable ? <p>loading</p> : dataJoinable.getJoinableEvents.map((e: any) => (
               <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>

@@ -17,6 +17,14 @@
   font-weight: 600;
 }
 
+.profile_subtext > p{
+  
+}
+
+.profile_subtext > h5{
+  font-weight: 600;
+}
+
 .profile_pic {
   width: 150px;
   height: 150px;

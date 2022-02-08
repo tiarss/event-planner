@@ -38,7 +38,7 @@ const Signin: NextPage = () => {
           <div className={styles.logo_side}>LOGO</div>
           <div className={styles.signup_side}>
             <div className={styles.signup_container}>
-              <h3 className='d-flex pt-3 px-2'>Sign In</h3>
+              <p className={styles.signup_text}>Sign In</p>
               <div className='form-group'>
                 <div className='form-control border-0'>
                   <InputText
@@ -91,7 +91,7 @@ const Signin: NextPage = () => {
           <div className={styles.logo_side}>LOGO</div>
           <div className={styles.signup_side}>
             <div className={styles.signup_container}>
-              <h3 className='d-flex pt-3 px-2'>Sign In</h3>
+            <p className={styles.signup_text}>Sign In</p>
               <div className='form-group'>
                 <div className='form-control border-0'>
                   <InputText

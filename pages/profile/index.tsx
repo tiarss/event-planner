@@ -152,7 +152,7 @@ function Profile() {
               <div
                 style={{ backgroundImage: `url(${avatar})` }}
                 className={style.profile_pic}></div>
-              <div>
+              <div className={style.profile_subtext}>
                 <h5>My Name</h5>
                 <p>{name}</p>
                 <h5>My Address</h5>
@@ -160,7 +160,7 @@ function Profile() {
                 <h5>My Occupation</h5>
                 <p>{occupation}</p>
               </div>
-              <div>
+              <div className={style.profile_subtext}>
                 <h5>My Email</h5>
                 <p>{email}</p>
                 <h5>My Phone</h5>

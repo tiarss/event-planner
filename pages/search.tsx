@@ -54,14 +54,14 @@ const Search: NextPage = () => {
               onClick={() => search({ variables: { search: searchValue } })} />
           </span>
         </div>
-        <div className='d-flex container w-75 px-4 pt-4 pb-2'>
+        <div className='d-flex container w-100 px-4 pt-4 pb-2'>
           <h3>
           {`Our result of "`}<em>{`${searchValue}"`}</em>
           </h3>
         </div>
 
-        <div className="d-flex container justify-content-center w-75">
-          <div className="d-flex container px-2 flex-wrap">
+        <div className="d-flex container justify-content-center w-100">
+          <div className="d-flex container justify-content-center justify-content-md-start px-2 flex-wrap">
             {loadingSearch ? <p>loading</p> : dataSearch.getEventsBySearch.map((e: any) => (
               <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
@@ -82,7 +82,7 @@ const Search: NextPage = () => {
             ))}
           </div>
         </div>
-        <div className='d-flex container w-75 justify-content-end align-items-center px-5 py-2'>
+        <div className='d-flex container w-100 justify-content-end align-items-center px-5 py-2'>
           <div className='px-2'>prev</div>
           <div
             className={styles.prev_button}
@@ -121,11 +121,11 @@ const Search: NextPage = () => {
               onClick={() => search({ variables: { search: searchValue } })} />
           </span>
         </div>
-        <div className='d-flex container w-75 px-4 pt-4 pb-2'>
-          <h3>All Events</h3>
+        <div className='d-flex container w-100 px-4 pt-4 pb-2'>
+          <h3 className={styles.h3_text}>All Events</h3>
         </div>
-        <div className="d-flex container justify-content-center w-75">
-          <div className="d-flex container px-2 flex-wrap">
+        <div className="d-flex container justify-content-center w-100">
+          <div className="d-flex container justify-content-center justify-content-md-start px-2 flex-wrap">
             {loadingPaginate ? <p>loading</p> : dataPaginate.getPaginationEvents.map((e: any) => (
               <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
@@ -146,7 +146,7 @@ const Search: NextPage = () => {
             ))}
           </div>
         </div>
-        <div className='d-flex container w-75 justify-content-end align-items-center px-5 py-2'>
+        <div className='d-flex container w-100 justify-content-end align-items-center px-5 py-2'>
           <div className='px-2'>prev</div>
           <div
             className={styles.prev_button}
