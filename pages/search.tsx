@@ -17,7 +17,7 @@ const Search: NextPage = () => {
   const [offset, setOffset] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
   
-  const {data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {
+  const {loading: loadingPaginate, data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {
     variables: {  
       limit: limit,
       offset: offset
@@ -26,7 +26,10 @@ const Search: NextPage = () => {
   
   const [search, {loading: loadingSearch, data: dataSearch}] = useLazyQuery(GET_EVENTS_BY_SEARCH);
 
-  if(loadingSearch) {
+  console.log(`page: ${dataPaginate}`);
+  console.log(`search: ${dataSearch}`);
+
+  if(loadingPaginate) {
     return (
       <p>loading</p>
     )
@@ -35,8 +38,7 @@ const Search: NextPage = () => {
       <>
         <div className="d-flex py-2 justify-content-center align-items-center">
           <SearchBar onChange={(e) => setSearchValue(e.target.value)}/>
-          <span
-            className={styles.search_button}>
+          <span>
             <ButtonPrimary title="Search" onClick={() => search({ variables: { search: searchValue } })}/>
           </span>
         </div>
@@ -45,10 +47,10 @@ const Search: NextPage = () => {
         </div>
         <div className="d-flex container justify-content-center w-75">
           <div className="d-flex container px-2 flex-wrap">
-            {dataSearch.getEventsBySearch.map((e: any) => (
+            {loadingSearch ? <p>loading</p> : dataSearch.getEventsBySearch.map((e: any) => (
               <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
-                  <a>
+                  <a className="text-dark">
                     <CardsHome
                       title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
                       location={e.location}
@@ -91,10 +93,10 @@ const Search: NextPage = () => {
         </div>
         <div className="d-flex container justify-content-center w-75">
           <div className="d-flex container px-2 flex-wrap">
-            {dataPaginate.getPaginationEvents.map((e: any) => (
+            {loadingPaginate ? <p>loading</p> : dataPaginate.getPaginationEvents.map((e: any) => (
               <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
-                  <a>
+                  <a className="text-dark">
                     <CardsHome
                       title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
                       location={e.location}
