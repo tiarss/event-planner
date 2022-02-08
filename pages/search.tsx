@@ -100,6 +100,7 @@ const Search: NextPage = () => {
           </div>
           <div className='px-2'>next</div>
         </div>
+        <Footer />
       </>
     );
   } else if (dataPaginate) {
