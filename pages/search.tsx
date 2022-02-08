@@ -22,8 +22,8 @@ const Search: NextPage = () => {
   const [offset, setOffset] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const { data: dataPaginate } = useQuery(GET_ALL_EVENTS_PAGINATE, {
-    variables: {
+  const {loading: loadingPaginate, data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {
+    variables: {  
       limit: limit,
       offset: offset,
     },
@@ -59,12 +59,13 @@ const Search: NextPage = () => {
             Our result of "<em>{searchValue}</em>"
           </h3>
         </div>
-        <div className='d-flex container justify-content-center w-75'>
-          <div className='d-flex container px-2 flex-wrap'>
-            {dataSearch.getEventsBySearch.map((e: any) => (
-              <div key={e.id} className='p-2'>
+
+        <div className="d-flex container justify-content-center w-75">
+          <div className="d-flex container px-2 flex-wrap">
+            {loadingSearch ? <p>loading</p> : dataSearch.getEventsBySearch.map((e: any) => (
+              <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
-                  <a>
+                  <a className="text-dark">
                     <CardsHome
                       title={
                         e.title.length > 22
@@ -123,12 +124,12 @@ const Search: NextPage = () => {
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>All Events</h3>
         </div>
-        <div className='d-flex container justify-content-center w-75'>
-          <div className='d-flex container px-2 flex-wrap'>
-            {dataPaginate.getPaginationEvents.map((e: any) => (
-              <div key={e.id} className='p-2'>
+        <div className="d-flex container justify-content-center w-75">
+          <div className="d-flex container px-2 flex-wrap">
+            {loadingPaginate ? <p>loading</p> : dataPaginate.getPaginationEvents.map((e: any) => (
+              <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
-                  <a>
+                  <a className="text-dark">
                     <CardsHome
                       title={
                         e.title.length > 22
