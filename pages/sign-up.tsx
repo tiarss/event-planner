@@ -11,12 +11,14 @@ import { useToast } from "@chakra-ui/react";
 
 const Signup: NextPage = () => {
   const toast = useToast();
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [address, setAddress] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [occupation, setOccupation] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [signUpAttempt, setSignUpAttempt] = useState({
+    name: "",
+    email: "",
+    address: "",
+    phone: "",
+    occupation: "",
+    password: ""
+  })
   const router = useRouter();
 
   const [newUser] = useMutation(ADD_USER);
@@ -24,12 +26,12 @@ const Signup: NextPage = () => {
   const handleSignUp = () => {
     newUser({
       variables: {
-        name: name,
-        email: email,
-        address: address,
-        phone: phone,
-        occupation: occupation,
-        password: password,
+        name: signUpAttempt.name,
+        email: signUpAttempt.email,
+        address: signUpAttempt.address,
+        phone: signUpAttempt.phone,
+        occupation: signUpAttempt.occupation,
+        password: signUpAttempt.password,
       },
       onCompleted: (data) => {
         toast({
@@ -68,7 +70,7 @@ const Signup: NextPage = () => {
                     label='Name'
                     type='text'
                     placeholder='Name'
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setSignUpAttempt({ ...signUpAttempt, name: e.target.value})}
                   />
                 </div>
               </div>
@@ -78,8 +80,7 @@ const Signup: NextPage = () => {
                     label='Email'
                     type='text'
                     placeholder='Email'
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                    onChange={(e) => setSignUpAttempt({ ...signUpAttempt, email: e.target.value})}/>
                 </div>
               </div>
             </div>
@@ -89,7 +90,7 @@ const Signup: NextPage = () => {
                   label='Address'
                   type='text'
                   placeholder='Address'
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={(e) => setSignUpAttempt({ ...signUpAttempt, address: e.target.value})}
                 />
               </div>
             </div>
@@ -100,7 +101,7 @@ const Signup: NextPage = () => {
                     label='Occupation'
                     type='text'
                     placeholder='Occupation'
-                    onChange={(e) => setOccupation(e.target.value)}
+                    onChange={(e) => setSignUpAttempt({ ...signUpAttempt, occupation: e.target.value})}
                   />
                 </div>
               </div>
@@ -110,7 +111,7 @@ const Signup: NextPage = () => {
                     label='Phone'
                     type='text'
                     placeholder='Phone'
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setSignUpAttempt({ ...signUpAttempt, phone: e.target.value})}
                   />
                 </div>
               </div>
@@ -121,7 +122,7 @@ const Signup: NextPage = () => {
                   label='Password'
                   type='password'
                   placeholder='Password'
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setSignUpAttempt({ ...signUpAttempt, password: e.target.value})}
                 />
               </div>
             </div>
