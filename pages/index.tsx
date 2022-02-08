@@ -13,7 +13,7 @@ import {
   GET_EVENTS_BY_SEARCH,
 } from "../graphql/Query";
 import { Header } from "../components/Header/Header";
-import styles from "../styles/Search.module.css"
+import styles from "../styles/index.module.css"
 import { Footer } from "../components/Footer/Footer";
 
 const Home = () => {

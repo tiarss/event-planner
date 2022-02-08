@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { InputText } from "../components/Input/Input";
 import { ButtonPrimary } from "../components/Button/Button";
-import styles from "../styles/Sign-up.module.css";
+import styles from "../styles/sign-up.module.css";
 import { ApolloError, useMutation } from "@apollo/client";
 import { ADD_USER } from "../graphql/Mutation";
 import { useToast } from "@chakra-ui/react";

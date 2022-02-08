@@ -14,7 +14,7 @@ import { SearchBar } from "../components/SearchBar/SearchBar";
 import { CardsHome } from "../components/CardsHome/CardsHome";
 import { ButtonPrimary } from "../components/Button/Button";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import styles from "../styles/Search.module.css";
+import styles from "../styles/search.module.css";
 
 const Search: NextPage = () => {
   const router = useRouter();

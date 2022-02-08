@@ -1,0 +1,68 @@
+.fullheight {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.display {
+  display: flex;
+}
+
+.logo_side {
+  display: flex;
+  width: 40%;
+  background: rgb(195, 231, 142);
+  background: linear-gradient(
+    180deg,
+    rgba(195, 231, 142, 1) 0%,
+    rgba(125, 236, 224, 1) 100%
+  );
+  justify-content: center;
+  align-items: center;
+}
+
+.signup_side {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup_text{
+  display: flex;
+  padding: 20px 0.75rem;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .fullheight {
+    flex-direction: column;
+    height: fit-content;
+    padding: 0px 0px 40px;
+  }
+
+  .logo_side {
+    width: 100%;
+    height: 150px;
+  }
+
+  .signup_side {
+    width: 100%;
+  }
+}
+
+@media (max-width: 670px) {
+  .fullheight{
+    height: fit-content;
+  }
+  .display {
+    display: inline;
+  }
+}
