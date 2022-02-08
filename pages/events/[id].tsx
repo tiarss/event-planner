@@ -11,7 +11,12 @@ import { CardsDetail } from "../../components/CardsDetail/CardsDetail";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { InputText } from "../../components/Input/Input";
-import { ADD_COMMENT, JOIN_EVENT } from "../../graphql/Mutation";
+import {
+  ADD_COMMENT,
+  DELETE_COMMENTS_BY_ID,
+  JOIN_EVENT,
+  UPDATE_COMMENTS_BY_ID,
+} from "../../graphql/Mutation";
 import {
   GET_COMMENTS_BY_ID,
   GET_EVENT_BY_ID,
@@ -20,11 +25,12 @@ import {
 import style from "../../styles/details.module.css";
 
 function DetailsEvent() {
-  const toast = useToast()
+  const toast = useToast();
   const Category = ["Arts", "Technology", "Sports", "Music", "Education"];
   const router = useRouter();
   const { id } = router.query;
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState<string>("");
+  const [currentIdComents, setIdComments] = useState<number>(0);
 
   const { loading, error, data } = useQuery(GET_EVENT_BY_ID, {
     variables: { id: id },
@@ -48,20 +54,24 @@ function DetailsEvent() {
   const [joinEvent, { loading: loadingJoin, data: dataJoin }] =
     useMutation(JOIN_EVENT);
 
+  const [deleteComment, { loading: loadingDelete, data: dataDelete }] =
+    useMutation(DELETE_COMMENTS_BY_ID);
+
+  const [updateComment] = useMutation(UPDATE_COMMENTS_BY_ID);
+
   const handleGetComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setComment(value);
   };
 
-  
   const handleJoin = () => {
     joinEvent({
       variables: {
         eventID: id,
       },
       onCompleted: (data) => {
-        console.log(data);  
-        if(data.createParticipant.success){
+        console.log(data);
+        if (data.createParticipant.success) {
           toast({
             title: `"You have been Successfully Registered in This Event"`,
             description: "Success to Join Event",
@@ -70,7 +80,7 @@ function DetailsEvent() {
             isClosable: true,
           });
           refetchParticipant();
-        }else{
+        } else {
           toast({
             title: `You have been Registered in This Event`,
             description: "Failed to Join Event",
@@ -94,7 +104,7 @@ function DetailsEvent() {
             duration: 9000,
             isClosable: true,
           });
-          router.replace('/sign-in')
+          router.replace("/sign-in");
         }
         console.log(error.message);
       },
@@ -102,13 +112,89 @@ function DetailsEvent() {
   };
 
   const handleAddComments = () => {
-    addComment({
-      variables: {
-        eventID: id,
-        content: comment,
-      },
+    if (currentIdComents == 0) {
+      addComment({
+        variables: {
+          eventID: id,
+          content: comment,
+        },
+        onCompleted: (data) => {
+          console.log(data);
+          setComment("");
+          if (data.createComment.code === 200) {
+            toast({
+              title: "Comment Added",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+          } else {
+          }
+          refetchComment();
+        },
+        onError: (error: ApolloError) => {
+          if (error.message === "Unexpected token i in JSON at position 0") {
+            toast({
+              title: "You Must Sign In",
+              description: "Failed to Join",
+              status: "error",
+              duration: 9000,
+              isClosable: true,
+            });
+            router.replace("/sign-in");
+          }
+        },
+        context: {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      });
+    } else {
+      updateComment({
+        variables: {
+          id: currentIdComents,
+          content: comment,
+        },
+        onCompleted: (data) => {
+          setComment("");
+          setIdComments(0)
+          if (data.updateComment.code === 200) {
+            toast({
+              title: "Comment Edited",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+            refetchComment();
+          }
+        },
+        context: {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      });
+    }
+  };
+
+  const handleEditComments = (idComments: number, content: string) => {
+    console.log(content);
+    setIdComments(idComments);
+    setComment(content);
+  };
+
+  const handleDeleteComments = (idComments: number) => {
+    deleteComment({
+      variables: { id: idComments },
       onCompleted: (data) => {
         console.log(data);
+        toast({
+          title: "Comment Deleted",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
         refetchComment();
       },
       context: {
@@ -118,8 +204,8 @@ function DetailsEvent() {
       },
     });
   };
-  console.log(dataParticipant)
-  console.log(dataComments)
+
+  console.log(dataComments);
   if (loading) {
     return <div>Loading</div>;
   } else {
@@ -181,6 +267,7 @@ function DetailsEvent() {
                 <div className='d-flex align-items-center'>
                   <InputText
                     type='text'
+                    value={comment}
                     placeholder='Enter Comments'
                     onChange={handleGetComment}
                   />
@@ -204,6 +291,13 @@ function DetailsEvent() {
                         image={value.user.avatar}
                         comment={value.content}
                         name={value.user.name}
+                        isUser={
+                          parseInt(localStorage.getItem("id")!) == value.user.id
+                        }
+                        onDelete={() => handleDeleteComments(value.id)}
+                        onUpdate={() =>
+                          handleEditComments(value.id, value.content)
+                        }
                       />
                     </div>
                   ))

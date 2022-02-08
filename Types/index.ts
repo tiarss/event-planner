@@ -42,6 +42,9 @@ export type cardsCommentPropsType = {
   image?: string;
   name?: string;
   comment?: string;
+  isUser?: boolean;
+  onDelete?: () => void;
+  onUpdate?: () => void;
 };
 
 export type inputSearchPropsType = {
@@ -55,7 +58,7 @@ interface dataModalProfileProps {
   address?: string;
   phone?: string;
   occupation?: string;
-  avatar?:string;
+  avatar?: string;
 }
 
 export type modalProfilePropsType = {
@@ -122,7 +125,7 @@ export type modalEventPropsType = {
 };
 
 export type inputSelectPropsType = {
-  id?:number;
+  id?: number;
   label?: string;
   option?: string[];
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;

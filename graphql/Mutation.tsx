@@ -130,8 +130,28 @@ export const ADD_USER = gql`
 `;
 
 export const JOIN_EVENT = gql`
-  mutation($eventID : Int!){
+  mutation ($eventID: Int!) {
     createParticipant(input: { eventID: $eventID, status: true }) {
+      code
+      message
+      success
+    }
+  }
+`;
+
+export const DELETE_COMMENTS_BY_ID = gql`
+  mutation ($id: Int!) {
+    deleteComment(id: $id) {
+      code
+      message
+      success
+    }
+  }
+`;
+
+export const UPDATE_COMMENTS_BY_ID = gql`
+  mutation ($id: Int!, $content: String!) {
+    updateComment(id: $id, input: { content: $content }) {
       code
       message
       success

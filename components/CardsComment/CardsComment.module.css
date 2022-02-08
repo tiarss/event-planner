@@ -1,38 +1,50 @@
 .cards {
   width: 100%;
-  height: 150px;
+  min-height: 200px;
   border-radius: 20px;
   overflow: auto;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.446);
-  position: relative;
   display: flex;
+  padding: 20px;
 }
 
 .cards_image {
   width: 100px;
-  height: 60%;
-  background-size: 100vh;
-  background-size: 100%;
-  background-position: center;
+  height: 100px;
   margin: 10px;
   padding: 10px;
   border-radius: 20px;
 }
 
 .cards_body {
-  position: absolute;
   font-family: "Outfit", sans-serif;
   font-weight: 600;
-  background-color: white;
   border-radius: 10px;
-  height: 105px;
+  width: 100%;
   padding: 15px;
 }
 
-.img_col {
-  display: flexbox;
+.comments{
+  padding-bottom: 20px;
+  height: 100px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 .dtl_col {
-  display: flexbox;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button_comments{
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .cards{
+    flex-direction: column;
+    gap: 0px
+  }
 }
