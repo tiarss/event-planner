@@ -36,7 +36,7 @@ const Home = () => {
   });
 
   if (loadingAttendant) {
-    return <p>loading</p>;
+    return <p></p>;
   } else if (data && searchValue !== "") {
     return (
       <>

@@ -233,7 +233,7 @@ function DetailsEvent() {
                 <p></p>
               ) : dataParticipant.getParticipants.length === 0 ? (
                 <div>
-                  <h5 className={style.details_head_comments}>Attendees ({dataParticipant.getParticipants.length})</h5>
+                  <h5>Attendees ({dataParticipant.getParticipants.length} / {data.getEvent.quota})</h5>
                   <p>No Participant</p>
                 </div>
               ) : (
