@@ -130,8 +130,8 @@ export const ADD_USER = gql`
 `;
 
 export const JOIN_EVENT = gql`
-  mutation{
-    createParticipant(input: { eventID: 1, status: false }) {
+  mutation($eventID : Int!){
+    createParticipant(input: { eventID: $eventID, status: true }) {
       code
       message
       success

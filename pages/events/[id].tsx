@@ -10,7 +10,7 @@ import { CardsDetail } from "../../components/CardsDetail/CardsDetail";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { InputText } from "../../components/Input/Input";
-import { ADD_COMMENT } from "../../graphql/Mutation";
+import { ADD_COMMENT, JOIN_EVENT } from "../../graphql/Mutation";
 import {
   GET_COMMENTS_BY_ID,
   GET_EVENT_BY_ID,
@@ -34,17 +34,38 @@ function DetailsEvent() {
     refetch: refetchComment,
   } = useQuery(GET_COMMENTS_BY_ID, { variables: { eventID: id } });
 
-  const { loading: loadingParticipant, data: dataParticipant } = useQuery(
-    GET_PARTICIPANT_BY_ID,
-    { variables: { eventID: id } }
-  );
+  const {
+    loading: loadingParticipant,
+    data: dataParticipant,
+    refetch: refetchParticipant,
+  } = useQuery(GET_PARTICIPANT_BY_ID, { variables: { eventID: id } });
 
   const [addComment, { loading: loadingComment, data: dataComment }] =
     useMutation(ADD_COMMENT);
 
+  const [joinEvent, { loading: loadingJoin, data: dataJoin }] =
+    useMutation(JOIN_EVENT);
+
   const handleGetComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setComment(value);
+  };
+
+  const handleJoin = () => {
+    joinEvent({
+      variables: {
+        eventID: id,
+      },
+      onCompleted: (data) => {
+        console.log(data);
+        refetchParticipant();
+      },
+      context: {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      },
+    });
   };
 
   const handleAddComments = () => {
@@ -59,14 +80,11 @@ function DetailsEvent() {
       },
       context: {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MTg0NTg5LCJpZCI6Mn0.Mc84Q1tKDBYZV_zjNCGvgIjowWXc8nLHti943Mt3UeY`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       },
     });
   };
-
-  console.log(dataParticipant);
-  console.log(dataComments);
 
   if (loading) {
     return <div>Loading</div>;
@@ -109,7 +127,9 @@ function DetailsEvent() {
                           placement='top'
                           delay={{ show: 250, hide: 400 }}
                           overlay={
-                            <Tooltip id='button-tooltip'>{value.user.name}</Tooltip>
+                            <Tooltip id='button-tooltip'>
+                              {value.user.name}
+                            </Tooltip>
                           }>
                           <div
                             className={style.details_avatar}
@@ -147,8 +167,9 @@ function DetailsEvent() {
                   dataComments.getComments.map((value: any, index: any) => (
                     <div key={index}>
                       <CardsComment
+                        image={value.user.avatar}
                         comment={value.content}
-                        name={value.userID.toString()}
+                        name={value.user.name}
                       />
                     </div>
                   ))
@@ -157,6 +178,7 @@ function DetailsEvent() {
             </div>
             <div className={style.details_right}>
               <CardsDetail
+                onJoin={handleJoin}
                 location={data.getEvent.location}
                 date={moment(data.getEvent.date).format("yyyy-MM-DD, hh:mm")}
                 category={Category[data.getEvent.categoryID]}

@@ -120,13 +120,6 @@ const Search: NextPage = () => {
               onClick={() => search({ variables: { search: searchValue } })} />
           </span>
         </div>
-        {/* <div className="d-flex py-2 justify-content-center align-items-center">
-          <SearchBar onChange={(e) => setSearchValue(e.target.value)}/>
-          <span
-            className={styles.search_button}>
-            <ButtonPrimary title="Search" onClick={() => search({ variables: { search: searchValue } })}/>
-          </span>
-        </div> */}
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>All Events</h3>
         </div>

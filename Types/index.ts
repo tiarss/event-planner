@@ -35,6 +35,7 @@ export type cardsDetailPropsType = {
   location?: string;
   date?: string;
   category?: string;
+  onJoin?: () => void;
 };
 
 export type cardsCommentPropsType = {
@@ -47,7 +48,6 @@ export type inputSearchPropsType = {
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
-
 
 interface dataModalProfileProps {
   name?: string;
@@ -83,7 +83,6 @@ export type cardsEventType = {
   onDelete?: () => void;
 };
 
-
 export type cardsDataEventType = {
   id: number;
   title: string;
@@ -93,7 +92,6 @@ export type cardsDataEventType = {
   categoryID: number;
   description: string;
   quota: number;
-  
 };
 
 interface dataModalEventProps {
@@ -126,4 +124,4 @@ export type inputSelectPropsType = {
   label?: string;
   option?: string[];
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};

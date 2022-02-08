@@ -83,6 +83,10 @@ export const GET_COMMENTS_BY_ID = gql`
       userID
       eventID
       content
+      user{
+        name
+        avatar
+      }
     }
   }
 `;

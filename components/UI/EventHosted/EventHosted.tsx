@@ -45,7 +45,7 @@ export const EventHosted = () => {
     context: {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MTM1MTMyLCJpZCI6Mn0.vH0M-S_fryX2mJeRF02f6AzILbFv8yyixC35nJ9DgwY",
+          `Bearer ${localStorage.getItem('token')}`,
       },
     },
   });
@@ -156,7 +156,7 @@ export const EventHosted = () => {
         context: {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MTM1MTMyLCJpZCI6Mn0.vH0M-S_fryX2mJeRF02f6AzILbFv8yyixC35nJ9DgwY",
+            `Bearer ${localStorage.getItem('token')}`,
           },
         },
       });
@@ -180,7 +180,7 @@ export const EventHosted = () => {
         context: {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MTM1MTMyLCJpZCI6Mn0.vH0M-S_fryX2mJeRF02f6AzILbFv8yyixC35nJ9DgwY",
+            `Bearer ${localStorage.getItem('token')}`,
           },
         },
       });
@@ -199,7 +199,7 @@ export const EventHosted = () => {
       context: {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MTYwNTYzLCJpZCI6Mn0.dp1l2i8OpjrUr42K5sjXTEphrLpkehGtjZfz9Qkr6qo",
+          `Bearer ${localStorage.getItem('token')}`,  
         },
       },
     });
