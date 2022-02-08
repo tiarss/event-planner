@@ -7,8 +7,10 @@ import { ButtonPrimary } from "../components/Button/Button";
 import styles from "../styles/Sign-up.module.css";
 import { ApolloError, useMutation } from "@apollo/client";
 import { ADD_USER } from "../graphql/Mutation";
+import { useToast } from "@chakra-ui/react";
 
 const Signup: NextPage = () => {
+  const toast = useToast();
   const [signUpAttempt, setSignUpAttempt] = useState({
     name: "",
     email: "",
@@ -32,10 +34,24 @@ const Signup: NextPage = () => {
         password: signUpAttempt.password,
       },
       onCompleted: (data) => {
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
         router.push("/sign-in");
       },
       onError: (error: ApolloError) => {
-        alert("Please ensure you have filled all information correctly");
+        if(error.message == "email is already exist")
+        toast({
+          title: "Email is Already Exist",
+          description: "Failed to Create Account",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
       },
     });
   };
@@ -46,7 +62,7 @@ const Signup: NextPage = () => {
         <div className={styles.logo_side}>LOGO</div>
         <div className={styles.signup_side}>
           <div className={styles.signup_container}>
-            <h3 className='d-flex pt-3 px-2'>Sign Up</h3>
+            <h3 className={styles.signup_text}>Sign Up</h3>
             <div className={styles.display}>
               <div className='form-group'>
                 <div className='form-control border-0'>

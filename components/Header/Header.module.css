@@ -110,3 +110,14 @@
 .menu_item:hover {
   background-color: rgb(225, 225, 225);
 }
+@media screen and (max-width: 576px) {
+  .header_main {
+    padding: 00px 50px;
+  }
+  .header_main_scroll{
+    padding: 00px 50px;
+  }
+  .header_main_second{
+    padding: 00px 50px;
+  }
+}

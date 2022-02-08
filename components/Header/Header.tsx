@@ -24,6 +24,7 @@ export const Header = () => {
       );
     }
     if (token) {
+      console.log("test")
       setIsAuth(true);
       fetchDataProfile();
     }
@@ -48,6 +49,7 @@ export const Header = () => {
     localStorage.setItem("token", "");
     localStorage.setItem("id", "");
     setIsAuth(false);
+    setIsLoading(true)
     route.push("/");
   };
 
@@ -76,7 +78,7 @@ export const Header = () => {
                   : avatar
               })`,
             }}></div>
-          <p className='d-none d-md-block'>{isLoading ? "Guest" : name}</p>
+          <p className='d-none d-md-block'>{isLoading ? "Guest" : name.substring(0,10)}</p>
         </div>
         <div
           className={isOpen ? style.menu_dropdown : style.menu_dropdown_hidden}>
