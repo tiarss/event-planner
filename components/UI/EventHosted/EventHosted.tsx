@@ -187,6 +187,19 @@ export const EventHosted = () => {
             refetch();
           }
         },
+        // onError: (error: ApolloError) => {
+        //   if (
+        //     error.message ===
+        //     `parsing time "" as "2006-01-02T15:04:05.999999999Z07:00": cannot parse "" as "2006`
+        //   ) {
+        //     toast({
+        //       title: "Please fill in All The Forms ",
+        //       status: "error",
+        //       duration: 9000,
+        //       isClosable: true,
+        //     });
+        //   }
+        // },
         context: {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

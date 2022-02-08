@@ -8,6 +8,7 @@ import styles from "../styles/sign-in.module.css";
 import { useLazyQuery } from "@apollo/client";
 import { SIGNIN } from "../graphql/Query";
 import { useToast } from "@chakra-ui/react";
+import Head from "next/head";
 
 const Signin: NextPage = () => {
   const toast = useToast();
@@ -34,8 +35,15 @@ const Signin: NextPage = () => {
   } else if (error) {
     return (
       <>
+        <Head>
+          <title>Sign In</title>
+          <meta name='description' content='Your Profile Page' />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
         <div className={styles.fullheight}>
-          <div className={styles.logo_side}><p>eventGO</p></div>
+          <div className={styles.logo_side}>
+            <p>eventGO</p>
+          </div>
           <div className={styles.signup_side}>
             <div className={styles.signup_container}>
               <p className={styles.signup_text}>Sign In</p>
@@ -87,6 +95,11 @@ const Signin: NextPage = () => {
   } else {
     return (
       <>
+        <Head>
+          <title>Sign In</title>
+          <meta name='description' content='Your Profile Page' />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
         <div className={styles.fullheight}>
           <div className={styles.logo_side}>
             <p>eventGO</p>

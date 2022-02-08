@@ -13,8 +13,9 @@ import {
   GET_EVENTS_BY_SEARCH,
 } from "../graphql/Query";
 import { Header } from "../components/Header/Header";
-import styles from "../styles/index.module.css"
+import styles from "../styles/index.module.css";
 import { Footer } from "../components/Footer/Footer";
+import Head from "next/head";
 
 const Home = () => {
   const router = useRouter();
@@ -24,7 +25,6 @@ const Home = () => {
   const { loading: loadingAttendant, data: dataAttendant } = useQuery(
     GET_MOST_ATTENDANT_EVENTS
   );
-
 
   const { loading: loadingJoinable, data: dataJoinable } =
     useQuery(GET_JOINABLE_EVENTS);
@@ -40,6 +40,11 @@ const Home = () => {
   } else if (data && searchValue !== "") {
     return (
       <>
+        <Head>
+          <title>Home</title>
+          <meta name='description' content='Your Profile Page' />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
         <Header />
         <div className={styles.banner}>
           <p>
@@ -59,7 +64,8 @@ const Home = () => {
         </div>
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>
-            {`Our result of "`}<em>{`${searchValue}"`}</em>
+            {`Our result of "`}
+            <em>{`${searchValue}"`}</em>
           </h3>
         </div>
         <div className='d-flex container justify-content-center w-75'>
@@ -67,7 +73,7 @@ const Home = () => {
             {data.getEventsBySearch.map((e: any) => (
               <div key={e.id} className='p-2'>
                 <Link href={`events/${e.id}`}>
-                  <a className="text-dark">
+                  <a className='text-dark'>
                     <CardsHome
                       title={
                         e.title.length > 22
@@ -90,7 +96,7 @@ const Home = () => {
   } else if (dataAttendant) {
     return (
       <>
-      <Header />
+        <Header />
         <div className={styles.banner}>
           <p>
             Create. Attend. <br /> Join
@@ -108,57 +114,78 @@ const Home = () => {
           </span>
         </div>
         <div className='d-flex container w-100 px-4 pt-4 pb-4'>
-          <h3 className={styles.h3_text} >Most Attendant</h3>
+          <h3 className={styles.h3_text}>Most Attendant</h3>
         </div>
-        <div className="d-flex container justify-content-center w-100 pb-5">
-          <div className="d-flex container justify-content-center justify-content-md-start px-2 flex-wrap">
-            {loadingAttendant ? <p>loading</p> : dataAttendant.getEventMostAttendant.map((e: any) => (
-              <div key={e.id} className="p-2">
-                <Link href={`events/${e.id}`}>
-                  <a className="text-dark">
-                    <CardsHome
-                      title={
-                        e.title.length > 22
-                          ? e.title.substring(0, 22) + ".."
-                          : e.title
-                      }
-                      location={e.location}
-                      image={e.image}
-                      date={moment(e.date).format("YYYY MMM D, hh:mm ") + "WIB"}
-                    />
-                  </a>
-                </Link>
-              </div>
-            ))}
+        <div className='d-flex container justify-content-center w-100 pb-5'>
+          <div className='d-flex container justify-content-center justify-content-md-start px-2 flex-wrap'>
+            {loadingAttendant ? (
+              <p>loading</p>
+            ) : (
+              dataAttendant.getEventMostAttendant.map((e: any) => (
+                <div key={e.id} className='p-2'>
+                  <Link href={`events/${e.id}`}>
+                    <a className='text-dark'>
+                      <CardsHome
+                        title={
+                          e.title.length > 22
+                            ? e.title.substring(0, 22) + ".."
+                            : e.title
+                        }
+                        location={e.location}
+                        image={e.image}
+                        date={
+                          moment(e.date).format("YYYY MMM D, hh:mm ") + "WIB"
+                        }
+                      />
+                    </a>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
         <div className='d-flex container justify-content-between align-items-center w-100 px-4 pt-4 pb-4'>
           <h3 className={styles.h3_text}>Join These Events</h3>
-          <h6><Link href="/search"><a className='text-dark text-decoration-none'>See All Events</a></Link></h6>
+          <h6>
+            <Link href='/search'>
+              <a className='text-dark text-decoration-none'>See All Events</a>
+            </Link>
+          </h6>
         </div>
-        <div className="d-flex container justify-content-center w-100 pb-5">
-          <div className="d-flex container justify-content-center justify-content-md-start px-2 flex-wrap">
-            {loadingJoinable ? <p>loading</p> : dataJoinable.getJoinableEvents.map((e: any) => (
-              <div key={e.id} className="p-2">
-                <Link href={`events/${e.id}`}>
-                  <a className='text-dark'>
-                    <CardsHome
-                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
-                      location={e.location}
-                      image={e.image}
-                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
-                  </a>
-                </Link>
-              </div>
-            ))}
+        <div className='d-flex container justify-content-center w-100 pb-5'>
+          <div className='d-flex container justify-content-center justify-content-md-start px-2 flex-wrap'>
+            {loadingJoinable ? (
+              <p>loading</p>
+            ) : (
+              dataJoinable.getJoinableEvents.map((e: any) => (
+                <div key={e.id} className='p-2'>
+                  <Link href={`events/${e.id}`}>
+                    <a className='text-dark'>
+                      <CardsHome
+                        title={
+                          e.title.length > 22
+                            ? e.title.substring(0, 22) + ".."
+                            : e.title
+                        }
+                        location={e.location}
+                        image={e.image}
+                        date={
+                          moment(e.date).format("YYYY MMM D, hh:mm ") + "WIB"
+                        }
+                      />
+                    </a>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
         <Footer />
       </>
-    )
+    );
   } else {
     return null;
   }
-}
+};
 
 export default Home;
