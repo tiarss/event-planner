@@ -8,6 +8,7 @@ export const CardsDetail = ({
   location,
   date,
   category,
+  onJoin,
 }: cardsDetailPropsType) => {
   return (
     <>
@@ -20,7 +21,7 @@ export const CardsDetail = ({
           <h5>Category</h5>
           <p><BiInfoCircle className={style.icon_alignment}/>&nbsp;{category}</p>
           <div className={style.button_alignment}>
-            <ButtonPrimary title="Join"/>
+            <ButtonPrimary title="Join" onClick={onJoin}/>
           </div>
         </div>
       </div>

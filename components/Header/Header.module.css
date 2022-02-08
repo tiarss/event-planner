@@ -1,4 +1,7 @@
 .header_main {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
   width: 100%;
   height: 70px;
   display: flex;
@@ -6,6 +9,35 @@
   padding: 00px 100px;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.5s ease;
+}
+
+.header_main_scroll {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  background-color: none;
+  padding: 00px 100px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+}
+
+.header_main_second {
+  position: sticky;
+  z-index: 10;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  background-color: #79e2b3;
+  padding: 00px 100px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
 }
 
 .header_logo > p {
@@ -21,19 +53,19 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  background-color: #79e2b3;
+  background-color: none;
   padding: 7px 10px;
   border: 2px solid rgba(172, 163, 163, 0);
   border-radius: 10px;
   transition: all 0.4s ease;
 }
 
-.header_menu:hover{
-   border: 2px solid #5fc798;
+.header_menu:hover {
+  border: 2px solid #5fc798;
 }
 
-.header_menu:active{
-   background-color: #a1ebc9;
+.header_menu:active {
+  background-color: #a1ebc9;
 }
 
 .header_menu_image {
@@ -51,30 +83,30 @@
   margin-left: 10px;
 }
 .menu_dropdown_hidden {
-   display: none;
+  display: none;
 }
 
-.menu_dropdown{
-   z-index: 10;
-   position: absolute;
-   bottom: -100px;
-   gap: 5px;
-   left: 0px;
-   border-radius: 10px;
-   background-color: white;
-   width: 100px;
-   display: flex;
-   flex-direction: column;
-   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.172);
-   overflow: hidden;
+.menu_dropdown {
+  z-index: 10;
+  position: absolute;
+  bottom: -100px;
+  gap: 5px;
+  left: 0px;
+  border-radius: 10px;
+  background-color: white;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.172);
+  overflow: hidden;
 }
 
-.menu_item{
-   cursor: pointer;
-   padding: 10px 20px;
-   background-color: white;
+.menu_item {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
 }
 
-.menu_item:hover{
-   background-color: rgb(225, 225, 225);
+.menu_item:hover {
+  background-color: rgb(225, 225, 225);
 }
