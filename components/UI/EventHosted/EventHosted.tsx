@@ -277,7 +277,6 @@ export const EventHosted = () => {
                 onEdit={() => handleEdit(value.id)}
                 onDelete={() => handleDeleteEvent(value.id)}
               />
-              ;
             </div>
           ))}
         </div>
