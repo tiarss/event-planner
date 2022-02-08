@@ -18,9 +18,11 @@ import styles from "../styles/Search.module.css";
 
 const Search: NextPage = () => {
   const router = useRouter();
-  const limit: number = 3;
+  const limit: number = 8;
   const [offset, setOffset] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
+  var canPrev: boolean = true;
+  var canNext: boolean = true;
 
   const {loading: loadingPaginate, data: dataPaginate} = useQuery(GET_ALL_EVENTS_PAGINATE, {
     variables: {  
@@ -28,6 +30,9 @@ const Search: NextPage = () => {
       offset: offset,
     },
   });
+
+  (offset == 0) ? canPrev = false : canPrev = true;
+  (offset != 0) ? canNext = false : canNext = true;
 
   const [search, { loading: loadingSearch, data: dataSearch }] =
     useLazyQuery(GET_EVENTS_BY_SEARCH);
@@ -84,20 +89,40 @@ const Search: NextPage = () => {
         </div>
         <div className='d-flex container w-75 justify-content-end align-items-center px-5 py-2'>
           <div className='px-2'>prev</div>
-          <div
-            className={styles.prev_button}
-            onClick={() => setOffset(offset - limit)}>
-            <div className={styles.icon_positioning}>
-              <AiOutlineLeft />
-            </div>
-          </div>
-          <div
-            className={styles.next_button}
-            onClick={() => setOffset(offset + limit)}>
-            <div className={styles.icon_positioning}>
-              <AiOutlineRight />
-            </div>
-          </div>
+          {canPrev == true
+            ? <button
+                className={styles.prev_button}
+                onClick={() => setOffset(offset - limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineLeft />
+                </div>
+              </button>
+            : <button
+                disabled
+                className={styles.prev_button}
+                onClick={() => setOffset(offset - limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineLeft />
+                </div>
+              </button>
+          }
+          {canNext == true
+            ? <button
+                className={styles.next_button}
+                onClick={() => setOffset(offset + limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineRight />
+                </div>
+              </button>
+            : <button
+                disabled
+                className={styles.next_button}
+                onClick={() => setOffset(offset + limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineRight />
+                </div>
+              </button>
+          }
           <div className='px-2'>next</div>
         </div>
       </>
@@ -148,20 +173,40 @@ const Search: NextPage = () => {
         </div>
         <div className='d-flex container w-75 justify-content-end align-items-center px-5 py-2'>
           <div className='px-2'>prev</div>
-          <div
-            className={styles.prev_button}
-            onClick={() => setOffset(offset - limit)}>
-            <div className={styles.icon_positioning}>
-              <AiOutlineLeft />
-            </div>
-          </div>
-          <div
-            className={styles.next_button}
-            onClick={() => setOffset(offset + limit)}>
-            <div className={styles.icon_positioning}>
-              <AiOutlineRight />
-            </div>
-          </div>
+          {canPrev == true
+            ? <button
+                className={styles.prev_button}
+                onClick={() => setOffset(offset - limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineLeft />
+                </div>
+              </button>
+            : <button
+                disabled
+                className={styles.prev_button}
+                onClick={() => setOffset(offset - limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineLeft />
+                </div>
+              </button>
+          }
+          {canNext == true
+            ? <button
+                className={styles.next_button}
+                onClick={() => setOffset(offset + limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineRight />
+                </div>
+              </button>
+            : <button
+                disabled
+                className={styles.next_button}
+                onClick={() => setOffset(offset + limit)}>
+                <div className={styles.icon_positioning}>
+                  <AiOutlineRight />
+                </div>
+              </button>
+          }
           <div className='px-2'>next</div>
         </div>
         <Footer />
