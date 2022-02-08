@@ -15,6 +15,12 @@ const Signin: NextPage = () => {
 
   const [signIn, { loading, error, data }] = useLazyQuery(SIGNIN);
 
+  if (data) {
+    router.push("/");
+    localStorage.setItem("id", data.login.id);
+    localStorage.setItem("token", data.login.token);
+  }
+
   if (loading) {
     return <p>Loading ...</p>;
   } else if (error) {
@@ -71,15 +77,6 @@ const Signin: NextPage = () => {
       </>
     );
   } else {
-    // if (loading) return (<p>Loading ...</p>);
-    // if (error) return `Error! ${error}`;
-
-    if (data) {
-      router.push("/");
-      localStorage.setItem("id", data.login.id);
-      localStorage.setItem("token", data.login.token);
-    }
-
     return (
       <>
         <div className={styles.fullheight}>

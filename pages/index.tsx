@@ -25,6 +25,7 @@ const Home = () => {
     GET_MOST_ATTENDANT_EVENTS
   );
 
+
   const { loading: loadingJoinable, data: dataJoinable } =
     useQuery(GET_JOINABLE_EVENTS);
 
@@ -69,7 +70,7 @@ const Home = () => {
             {data.getEventsBySearch.map((e: any) => (
               <div key={e.id} className='p-2'>
                 <Link href={`events/${e.id}`}>
-                  <a>
+                  <a className="text-dark">
                     <CardsHome
                       title={
                         e.title.length > 22
@@ -112,12 +113,12 @@ const Home = () => {
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>Most Attendant</h3>
         </div>
-        <div className='d-flex container justify-content-center w-75'>
-          <div className='d-flex container px-2 flex-wrap'>
-            {dataAttendant.getEventMostAttendant.map((e: any) => (
-              <div key={e.id} className='p-2'>
+        <div className="d-flex container justify-content-center w-75">
+          <div className="d-flex container px-2 flex-wrap">
+            {loadingAttendant ? <p>loading</p> : dataAttendant.getEventMostAttendant.map((e: any) => (
+              <div key={e.id} className="p-2">
                 <Link href={`events/${e.id}`}>
-                  <a>
+                  <a className="text-dark">
                     <CardsHome
                       title={
                         e.title.length > 22
@@ -136,44 +137,31 @@ const Home = () => {
         </div>
         <div className='d-flex container justify-content-between align-items-center w-75 px-4 pt-4 pb-2'>
           <h3>Join These Events</h3>
-          <h6>
-            <Link href='/search'>
-              <a>See All Events</a>
-            </Link>
-          </h6>
+          <h6><Link href="/search"><a className='text-dark text-decoration-none'>See All Events</a></Link></h6>
         </div>
-        <div className='d-flex container justify-content-center w-75'>
-          <div className='d-flex container px-2 flex-wrap'>
-            {loadingJoinable ? (
-              <p>Loading</p>
-            ) : (
-              dataJoinable.getJoinableEvents.map((e: any) => (
-                <div key={e.id} className='p-2'>
-                  <Link href={`events/${e.id}`}>
-                    <a>
-                      <CardsHome
-                        title={
-                          e.title.length > 22
-                            ? e.title.substring(0, 22) + ".."
-                            : e.title
-                        }
-                        location={e.location}
-                        image={e.image}
-                        date={
-                          moment(e.date).format("YYYY MMM D, hh:mm ") + "WIB"
-                        }
-                      />
-                    </a>
-                  </Link>
-                </div>
-              ))
-            )}
+        <div className="d-flex container justify-content-center w-75">
+          <div className="d-flex container px-2 flex-wrap">
+            {loadingJoinable ? <p>loading</p> : dataJoinable.getJoinableEvents.map((e: any) => (
+              <div key={e.id} className="p-2">
+                <Link href={`events/${e.id}`}>
+                  <a className='text-dark'>
+                    <CardsHome
+                      title={e.title.length > 22 ? e.title.substring(0,22) + ".." : e.title} 
+                      location={e.location}
+                      image={e.image}
+                      date={moment(e.date).format('YYYY MMM D, hh:mm ') + "WIB"}/>
+                  </a>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
         <Footer />
       </>
-    );
+    )
+  } else {
+    return null;
   }
-};
+}
 
 export default Home;
