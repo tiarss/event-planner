@@ -30,12 +30,12 @@ const Signin: NextPage = () => {
   }
 
   if (loading) {
-    return <p>Loading ...</p>;
+    return <p></p>;
   } else if (error) {
     return (
       <>
         <div className={styles.fullheight}>
-          <div className={styles.logo_side}>LOGO</div>
+          <div className={styles.logo_side}><p>eventGO</p></div>
           <div className={styles.signup_side}>
             <div className={styles.signup_container}>
               <p className={styles.signup_text}>Sign In</p>
@@ -88,10 +88,12 @@ const Signin: NextPage = () => {
     return (
       <>
         <div className={styles.fullheight}>
-          <div className={styles.logo_side}>LOGO</div>
+          <div className={styles.logo_side}>
+            <p>eventGO</p>
+          </div>
           <div className={styles.signup_side}>
             <div className={styles.signup_container}>
-            <p className={styles.signup_text}>Sign In</p>
+              <p className={styles.signup_text}>Sign In</p>
               <div className='form-group'>
                 <div className='form-control border-0'>
                   <InputText

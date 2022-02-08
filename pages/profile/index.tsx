@@ -16,11 +16,13 @@ import { UPDATE_USER } from "../../graphql/Mutation";
 import style from "../../styles/profile.module.css";
 import { modalProfilePropsType } from "../../Types";
 import { EventParticipate } from "../../components/UI/EventParticapated/EventParticipate";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MDg3NjU4LCJpZCI6Mn0.WTbjczm87Tb6FrDD5NymYN-LL8z0D6oPp-U8lMog3c4";
+import { Footer } from "../../components/Footer/Footer";
+import { useToast } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 function Profile() {
+  const toast = useToast()
+  const router = useRouter()
   const [key, setKey] = useState("hosted");
   const [modalShow, setModalShow] = React.useState(false);
   const [name, setName] = useState("");
@@ -33,10 +35,13 @@ function Profile() {
 
   const [editProfile, { loading, error, data: dataUpdate }] =
     useMutation(UPDATE_USER);
-
   useEffect(() => {
-    fetchDataProfile();
-  }, []);
+    if(localStorage.getItem('token') === ""){
+      router.replace('/sign-in')
+    }else{
+      fetchDataProfile();
+    }
+  }, [dataUpdate]);
 
   const fetchDataProfile = async () => {
     const { data } = await client.query({
@@ -53,7 +58,6 @@ function Profile() {
     setOccupation(data.getProfile.occupation);
     setPhone(data.getProfile.phone);
     setAvatar(data.getProfile.avatar);
-    console.log(data);
     setIsLoading(false);
   };
 
@@ -89,11 +93,6 @@ function Profile() {
 
   const handleOpenEdit = () => {
     setModalShow(true);
-    // setName(data.getProfile.name);
-    // setEmail(data.getProfile.email);
-    // setAddress(data.getProfile.address);
-    // setOccupation(data.getProfile.occupation);
-    // setPhone(data.getProfile.phone);
   };
 
   let dataProfile = {
@@ -116,7 +115,16 @@ function Profile() {
         avatar: avatar,
       },
       onCompleted: (data) => {
-        console.log(data);
+        if(data.updateUser.code === 200) {
+          toast({
+            title: "Profile Updated",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          setModalShow(false)
+          router.reload();
+        }
       },
       context: {
         headers: {
@@ -127,7 +135,7 @@ function Profile() {
   };
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <div></div>;
   } else {
     return (
       <>
@@ -181,6 +189,7 @@ function Profile() {
             </Tab>
           </Tabs>
         </div>
+        <Footer />
         <EditProfileModal
           show={modalShow}
           data={dataProfile}

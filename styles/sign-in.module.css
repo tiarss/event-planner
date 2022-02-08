@@ -21,6 +21,11 @@
   align-items: center;
 }
 
+.logo_side p {
+  font-weight: 500;
+  font-size: 48px;
+}
+
 .signup_side {
   display: flex;
   width: 60%;

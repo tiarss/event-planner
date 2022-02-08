@@ -158,3 +158,13 @@ export const UPDATE_COMMENTS_BY_ID = gql`
     }
   }
 `;
+
+export const REMOVE_PARTICIPATE = gql`
+  mutation ($eventID: Int!) {
+    deleteParticipant(eventID: $eventID) {
+      code
+      message
+      success
+    }
+  }
+`;

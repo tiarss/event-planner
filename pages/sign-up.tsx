@@ -59,7 +59,7 @@ const Signup: NextPage = () => {
   return (
     <>
       <div className={styles.fullheight}>
-        <div className={styles.logo_side}>LOGO</div>
+        <div className={styles.logo_side}><p>eventGO</p></div>
         <div className={styles.signup_side}>
           <div className={styles.signup_container}>
             <h3 className={styles.signup_text}>Sign Up</h3>

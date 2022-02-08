@@ -21,6 +21,11 @@
   align-items: center;
 }
 
+.logo_side p {
+  font-weight: 500;
+  font-size: 48px;
+}
+
 .signup_side {
   display: flex;
   width: 60%;
@@ -34,7 +39,7 @@
   flex-direction: column;
 }
 
-.signup_text{
+.signup_text {
   display: flex;
   padding: 20px 0.75rem;
   font-size: 32px;
@@ -59,7 +64,7 @@
 }
 
 @media (max-width: 670px) {
-  .fullheight{
+  .fullheight {
     height: fit-content;
   }
   .display {

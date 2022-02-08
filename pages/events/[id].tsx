@@ -207,7 +207,7 @@ function DetailsEvent() {
 
   console.log(dataComments);
   if (loading) {
-    return <div>Loading</div>;
+    return <div></div>;
   } else {
     return (
       <div>
@@ -218,8 +218,8 @@ function DetailsEvent() {
         </Head>
         <Header />
         <div className={style.details_body}>
-          <h1>{data.getEvent.title}</h1>
-          <h5>Hosted by {data.getEvent.user.name}</h5>
+          <h1 className={style.event_name}>{data.getEvent.title}</h1>
+          <h5 className={style.event_hosted}>Hosted by {data.getEvent.user.name}</h5>
           <div
             className={style.details_hero}
             style={{
@@ -227,18 +227,18 @@ function DetailsEvent() {
             }}></div>
           <div className={style.details_desc}>
             <div className={style.details_left}>
-              <h5>Details</h5>
+              <h5 className={style.details_head_comments}>Details</h5>
               <p className={style.details_text}>{data.getEvent.description}</p>
               {loadingParticipant ? (
-                <p>Loading</p>
+                <p></p>
               ) : dataParticipant.getParticipants.length === 0 ? (
                 <div>
-                  <h5>Attendees ({dataParticipant.getParticipants.length})</h5>
+                  <h5 className={style.details_head_comments}>Attendees ({dataParticipant.getParticipants.length})</h5>
                   <p>No Participant</p>
                 </div>
               ) : (
                 <div>
-                  <h5>Attendees ({dataParticipant.getParticipants.length} / {data.getEvent.quota})</h5>
+                  <h5 className={style.details_head_comments}>Attendees ({dataParticipant.getParticipants.length} / {data.getEvent.quota})</h5>
                   <div className={style.details_participant}>
                     {dataParticipant.getParticipants.map(
                       (value: any, index: any) => (
@@ -281,7 +281,7 @@ function DetailsEvent() {
               </div>
               <div className={style.details_read_comments}>
                 {loadingComments ? (
-                  <p>Loading</p>
+                  <p></p>
                 ) : dataComments.getComments.length === 0 ? (
                   <p>No Comments</p>
                 ) : (
@@ -308,7 +308,7 @@ function DetailsEvent() {
               <CardsDetail
                 onJoin={handleJoin}
                 location={data.getEvent.location}
-                date={moment(data.getEvent.date).format("yyyy-MM-DD, hh:mm")}
+                date={moment(data.getEvent.date).format("YYYY MMM D, hh:mm ") + "WIB"}
                 category={Category[data.getEvent.categoryID]}
                 canJoin={loadingParticipant ? true : (dataParticipant.getParticipants.length < data.getEvent.quota)}
                 />

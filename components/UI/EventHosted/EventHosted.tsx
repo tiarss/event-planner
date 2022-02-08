@@ -9,16 +9,18 @@ import style from "./EventHosted.module.css";
 import client from "../../../graphql/client";
 import { GET_OWN_EVENT } from "../../../graphql/Query";
 import { cardsDataEventType, modalEventPropsType } from "../../../Types";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { ApolloError, useLazyQuery, useMutation } from "@apollo/client";
 import {
   ADD_EVENT,
   DELETE_EVENT,
   UPDATE_EVENT,
 } from "../../../graphql/Mutation";
+import { useToast } from "@chakra-ui/react";
 
 const Category = ["Arts", "Technology", "Sports", "Music", "Education"];
 
 export const EventHosted = () => {
+  const toast = useToast();
   const [modalShow, setModalShow] = React.useState(false);
   const [eventTitle, setEventTitle] = useState("");
   const [eventImage, setEventImage] = useState("");
@@ -139,10 +141,20 @@ export const EventHosted = () => {
           quota: eventQuota,
         },
         onCompleted: (data) => {
-          console.log(data);
-          setIsLoading(true);
-          setModalShow(false);
-          refetch();
+          if (data.updateEvent.code === 200) {
+            toast({
+              title: "Event Edited",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+            setIsLoading(true);
+            setModalShow(false);
+            refetch();
+          }
+        },
+        onError: (error: ApolloError) => {
+          console.log(error.message);
         },
         context: {
           headers: {
@@ -151,7 +163,7 @@ export const EventHosted = () => {
         },
       });
     } else {
-      console.log(eventDate)
+      console.log(eventDate);
       inputEvent({
         variables: {
           title: eventTitle,
@@ -163,10 +175,17 @@ export const EventHosted = () => {
           quota: eventQuota,
         },
         onCompleted: (data) => {
-          console.log(data);
-          setIsLoading(true);
-          setModalShow(false);
-          refetch();
+          if (data.createEvent.code === 200) {
+            toast({
+              title: "Event Added",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+            setIsLoading(true);
+            setModalShow(false);
+            refetch();
+          }
         },
         context: {
           headers: {
@@ -183,8 +202,29 @@ export const EventHosted = () => {
         id: id,
       },
       onCompleted: (data) => {
-        console.log(data);
-        refetch();
+        if (data.deleteEvent.code === 200) {
+          toast({
+            title: "Event Deleted",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          refetch();
+        }
+      },
+      onError: (error: ApolloError) => {
+        if (
+          error.message ===
+          "Error 1451: Cannot delete or update a parent row: a foreign key constraint fails (`eplanner`.`comments`, CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON UPDATE CASCADE)"
+        ) {
+          toast({
+            title: "You Cannot Delete",
+            description: "there are still participants in the event",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
       },
       context: {
         headers: {
@@ -230,7 +270,7 @@ export const EventHosted = () => {
                 title={value.title}
                 location={value.location}
                 date={value.date}
-                category={Category[value.categoryID]}
+                category={Category[value.categoryID - 1]}
                 description={value.description}
                 image={value.image}
                 quota={value.quota}

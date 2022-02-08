@@ -16,11 +16,11 @@ export const CardsDetail = ({
       <div className={style.cards}>
         <div className={style.cards_body}>
           <h5>Location</h5>
-          <p><BiTargetLock className={style.icon_alignment}/>&nbsp;{location}</p>
+          <p className="d-flex align-items-center"><BiTargetLock className={style.icon_alignment}/>&nbsp;{location}</p>
           <h5>Date</h5>
-          <p><BiCalendar className={style.icon_alignment}/>&nbsp;{date}</p>
+          <p className="d-flex align-items-center"><BiCalendar className={style.icon_alignment}/>&nbsp;{date}</p>
           <h5>Category</h5>
-          <p><BiInfoCircle className={style.icon_alignment}/>&nbsp;{category}</p>
+          <p className="d-flex align-items-center"><BiInfoCircle className={style.icon_alignment}/>&nbsp;{category}</p>
           <div className={style.button_alignment}>
             <ButtonPrimary title="Join" onClick={onJoin} disabled={!canJoin}/>
           </div>

@@ -131,3 +131,11 @@ export type inputSelectPropsType = {
   option?: string[];
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
+
+export type cardsParticipateType = {
+  name: string
+  location: string
+  image: string
+  date: string
+  onClick: ()=> void
+}

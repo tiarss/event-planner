@@ -1,16 +1,20 @@
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { REMOVE_PARTICIPATE } from "../../../graphql/Mutation";
 import { GET_OWN_PARTICIPANTS } from "../../../graphql/Query";
 import { cardsDataEventType } from "../../../Types";
 import { ButtonPrimary } from "../../Button/Button";
+import { CardsParticipate } from "../../CardsParticipate/CardsParticipate";
 import { EventCards } from "../../EventsCards/EventCards";
 import style from "./EventParticipate.module.css";
 
 const Category = ["Arts", "Technology", "Sports", "Music", "Education"];
 
 export const EventParticipate = () => {
+  const toast = useToast();
   const [dataParticipant, setDataParticipant] = useState([]);
-  const [modeParticipant] = useState(false)
+  const [modeParticipant] = useState(false);
   const [
     getParticipants,
     {
@@ -31,12 +35,37 @@ export const EventParticipate = () => {
     },
   });
 
+  const [removePartipacipate] = useMutation(REMOVE_PARTICIPATE);
+
   useEffect(() => {
     fetchDataParticipant();
-  }, []);
+  }, [loadingParticipants]);
 
   const fetchDataParticipant = () => {
     getParticipants();
+  };
+
+  const handleDeleteParticipant = (idEvent: number) => {
+    removePartipacipate({
+      variables: { eventID: idEvent },
+      onCompleted: (data) => {
+        if (data.deleteParticipant.code === 200) {
+          toast({
+            title: "Quit Participation",
+            description: "Success Quit Participation",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          refetch();
+        }
+      },
+      context: {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      },
+    });
   };
 
   return (
@@ -47,16 +76,12 @@ export const EventParticipate = () => {
       <div className={style.event_list}>
         {dataParticipant.map((value: cardsDataEventType) => (
           <div key={value.id}>
-            <EventCards
-              title={value.title}
+            <CardsParticipate
+              name={value.title}
               location={value.location}
               date={value.date}
-              category={Category[value.categoryID-1]}
-              description={value.description}
               image={value.image}
-              quota={value.quota}
-              // onEdit={() => handleEdit(value.id)}
-              // onDelete={() => handleDeleteEvent(value.id)}
+              onClick={() => handleDeleteParticipant(value.id)}
             />
             ;
           </div>

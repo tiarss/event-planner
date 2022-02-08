@@ -64,7 +64,7 @@ export const Header = () => {
       }>
       <div className={style.header_logo}>
         <Link href='/'>
-          <p style={{ cursor: "pointer" }}>Logo</p>
+          <p style={{ cursor: "pointer" }}>eventGO</p>
         </Link>
       </div>
       <div className={style.menu}>

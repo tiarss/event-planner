@@ -2,6 +2,15 @@
   padding: 50px 100px;
   /* height: 200vh; */
 }
+.event_name{
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.event_hosted{
+  font-size: 18px;
+  font-weight: 500;
+}
 
 .details_hero {
   margin-top: 20px;
@@ -55,7 +64,7 @@
 .details_head_comments{
    font-weight: 600;
    font-size: 1.25rem;
-   margin-bottom: 0px;
+   margin-bottom: 10px;
 }
 
 .details_read_comments{

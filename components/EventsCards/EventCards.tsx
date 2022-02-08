@@ -17,7 +17,7 @@ export const EventCards = ({
   onEdit,
   onDelete
 }: cardsEventType) => {
-  const convertDate = moment(date).format("MMMM Do YYYY, h:mm:ss");
+  const convertDate = moment(date).format("YYYY MMM D, hh:mm ") + "WIB";
 
   return (
     <div>
@@ -55,17 +55,17 @@ export const EventCards = ({
                   }}></div>
                 <div className={style.cards_details}>
                   <p className={style.cards_head}>Location</p>
-                  <p>
+                  <p className="d-flex align-items-center">
                     <BiTargetLock className={style.icon_alignment} />
                     &nbsp;{location}
                   </p>
                   <p className={style.cards_head}>Date</p>
-                  <p>
+                  <p className="d-flex align-items-center">
                     <BiCalendar className={style.icon_alignment} />
                     &nbsp;{convertDate}
                   </p>
                   <p className={style.cards_head}>Category</p>
-                  <p>
+                  <p className="d-flex align-items-center">
                     <BiInfoCircle className={style.icon_alignment} />
                     &nbsp;{category}
                   </p>

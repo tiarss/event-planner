@@ -148,12 +148,10 @@ export const GET_OWN_PARTICIPANTS = gql`
   query {
     getParticipateEvent {
       id
-      categoryID
       image
       title
-      description
+      location
       date
-      quota
     }
   }
 `;

@@ -35,9 +35,6 @@ const Home = () => {
     },
   });
 
-  console.log(`attendant: ${dataAttendant}`);
-  console.log(`joinable: ${dataJoinable}`);
-
   if (loadingAttendant) {
     return <p>loading</p>;
   } else if (data && searchValue !== "") {
