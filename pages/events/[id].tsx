@@ -1,11 +1,11 @@
 import { ApolloError, useMutation, useQuery } from "@apollo/client";
-import { useToast } from "@chakra-ui/react";
+import { StylesProvider, useToast } from "@chakra-ui/react";
 import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { ButtonSecondary } from "../../components/Button/Button";
+import { ButtonPrimary, ButtonSecondary } from "../../components/Button/Button";
 import { CardsComment } from "../../components/CardsComment/CardsComment";
 import { CardsDetail } from "../../components/CardsDetail/CardsDetail";
 import { Footer } from "../../components/Footer/Footer";
@@ -150,7 +150,7 @@ function DetailsEvent() {
                 </div>
               ) : (
                 <div>
-                  <h5>Attendees ({dataParticipant.getParticipants.length})</h5>
+                  <h5>Attendees ({dataParticipant.getParticipants.length} / {data.getEvent.quota})</h5>
                   <div className={style.details_participant}>
                     {dataParticipant.getParticipants.map(
                       (value: any, index: any) => (
@@ -214,7 +214,8 @@ function DetailsEvent() {
                 location={data.getEvent.location}
                 date={moment(data.getEvent.date).format("yyyy-MM-DD, hh:mm")}
                 category={Category[data.getEvent.categoryID]}
-              />
+                canJoin={loadingParticipant ? true : (dataParticipant.getParticipants.length < data.getEvent.quota)}
+                />
             </div>
           </div>
         </div>

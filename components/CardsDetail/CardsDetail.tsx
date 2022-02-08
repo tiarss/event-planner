@@ -9,6 +9,7 @@ export const CardsDetail = ({
   date,
   category,
   onJoin,
+  canJoin
 }: cardsDetailPropsType) => {
   return (
     <>
@@ -21,7 +22,7 @@ export const CardsDetail = ({
           <h5>Category</h5>
           <p><BiInfoCircle className={style.icon_alignment}/>&nbsp;{category}</p>
           <div className={style.button_alignment}>
-            <ButtonPrimary title="Join" onClick={onJoin}/>
+            <ButtonPrimary title="Join" onClick={onJoin} disabled={!canJoin}/>
           </div>
         </div>
       </div>

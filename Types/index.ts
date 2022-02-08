@@ -36,6 +36,7 @@ export type cardsDetailPropsType = {
   date?: string;
   category?: string;
   onJoin?: () => void;
+  canJoin: boolean;
 };
 
 export type cardsCommentPropsType = {
