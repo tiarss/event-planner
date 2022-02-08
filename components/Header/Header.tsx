@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import style from "./Header.module.css";
 import { GET_OWN_PROFILE } from "../../graphql/Query";
-import client from "../../graphql/client"
+import client from "../../graphql/client";
 
 export const Header = () => {
   const route = useRouter();
@@ -13,10 +13,9 @@ export const Header = () => {
   const handleOpen = () => setIsOpen(!isOpen);
   const [small, setSmall] = useState(false);
   const token = localStorage.getItem("token");
-  const [avatar, setAvatar] = useState("")
-  const [name, setName] = useState("")
+  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -26,7 +25,7 @@ export const Header = () => {
     }
     if (token) {
       setIsAuth(true);
-      fetchDataProfile()
+      fetchDataProfile();
     }
   }, []);
 
@@ -39,12 +38,11 @@ export const Header = () => {
         },
       },
     });
-    console.log(data)
-    setAvatar(data.getProfile.avatar)
-    setName(data.getProfile.name)
-    setIsLoading(false)
-  }
-
+    console.log(data);
+    setAvatar(data.getProfile.avatar);
+    setName(data.getProfile.name);
+    setIsLoading(false);
+  };
 
   const handleLogOut = () => {
     localStorage.setItem("token", "");
@@ -72,10 +70,13 @@ export const Header = () => {
           <div
             className={style.header_menu_image}
             style={{
-              backgroundImage:
-                `url(${isLoading?"": avatar})`,
+              backgroundImage: `url(${
+                isLoading
+                  ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  : avatar
+              })`,
             }}></div>
-          <p className='d-none d-md-block'>{isLoading? "Guess": name}</p>
+          <p className='d-none d-md-block'>{isLoading ? "Guest" : name}</p>
         </div>
         <div
           className={isOpen ? style.menu_dropdown : style.menu_dropdown_hidden}>

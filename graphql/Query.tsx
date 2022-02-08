@@ -60,18 +60,15 @@ export const GET_EVENT_BY_ID = gql`
 `;
 
 export const GET_ALL_EVENTS_PAGINATE = gql`
-  query (
-    $limit: Int!,
-    $offset: Int!
-  ) {
-    getPaginationEvents (limit: $limit, offset: $offset) {
-        id
-        userID
-        image
-        title
-        description
-        date
-        quota
+  query ($limit: Int!, $offset: Int!) {
+    getPaginationEvents(limit: $limit, offset: $offset) {
+      id
+      userID
+      image
+      title
+      description
+      date
+      quota
     }
   }
 `;
@@ -83,7 +80,7 @@ export const GET_COMMENTS_BY_ID = gql`
       userID
       eventID
       content
-      user{
+      user {
         name
         avatar
       }
@@ -107,16 +104,14 @@ export const GET_PARTICIPANT_BY_ID = gql`
 `;
 
 export const GET_EVENTS_BY_SEARCH = gql`
-  query (
-    $search: String!
-  ) {
-    getEventsBySearch (search: $search) {
-        id
-        userID
-        image
-        title
-        location
-        date
+  query ($search: String!) {
+    getEventsBySearch(search: $search) {
+      id
+      userID
+      image
+      title
+      location
+      date
     }
   }
 `;
@@ -144,6 +139,20 @@ export const GET_JOINABLE_EVENTS = gql`
       title
       date
       location
+    }
+  }
+`;
+
+export const GET_OWN_PARTICIPANTS = gql`
+  query {
+    getParticipateEvent {
+      id
+      categoryID
+      image
+      title
+      description
+      date
+      quota
     }
   }
 `;

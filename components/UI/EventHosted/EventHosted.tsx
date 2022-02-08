@@ -3,6 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { ButtonPrimary, ButtonTertier } from "../../Button/Button";
 import { EventCards } from "../../EventsCards/EventCards";
 import { InputText, InputTextArea } from "../../Input/Input";
+import { InputSelect } from "../../Select/Select";
 import moment from "moment";
 import style from "./EventHosted.module.css";
 import client from "../../../graphql/client";
@@ -14,9 +15,6 @@ import {
   DELETE_EVENT,
   UPDATE_EVENT,
 } from "../../../graphql/Mutation";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVkIjoxNjQ0MDg3NjU4LCJpZCI6Mn0.WTbjczm87Tb6FrDD5NymYN-LL8z0D6oPp-U8lMog3c4";
 
 const Category = ["Arts", "Technology", "Sports", "Music", "Education"];
 
@@ -44,8 +42,7 @@ export const EventHosted = () => {
     },
     context: {
       headers: {
-        Authorization:
-          `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     },
   });
@@ -79,31 +76,26 @@ export const EventHosted = () => {
 
   const handleChangeTitle = (e: any) => {
     const value = e.target.value;
-    console.log(value);
     setEventTitle(value);
   };
 
-  const handleChangeCategory = (e: any) => {
+  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
-    console.log(value);
-    setEventCategory(value);
+    setEventCategory(+value);
   };
 
   const handleChangeDesc = (e: any) => {
     const value = e.target.value;
-    console.log(value);
     setEventDescription(value);
   };
 
   const handleChangeImage = (e: any) => {
     const value = e.target.value;
-    console.log(value);
     setEventImage(value);
   };
 
   const handleChangeLocation = (e: any) => {
     const value = e.target.value;
-    console.log(value);
     setEventLocation(value);
   };
 
@@ -117,7 +109,6 @@ export const EventHosted = () => {
 
   const handleChangeQuota = (e: any) => {
     const value = e.target.value;
-    console.log(value);
     setEventQuota(value);
   };
 
@@ -155,12 +146,12 @@ export const EventHosted = () => {
         },
         context: {
           headers: {
-            Authorization:
-            `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         },
       });
     } else {
+      console.log(eventDate)
       inputEvent({
         variables: {
           title: eventTitle,
@@ -179,8 +170,7 @@ export const EventHosted = () => {
         },
         context: {
           headers: {
-            Authorization:
-            `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         },
       });
@@ -198,8 +188,7 @@ export const EventHosted = () => {
       },
       context: {
         headers: {
-          Authorization:
-          `Bearer ${localStorage.getItem('token')}`,  
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       },
     });
@@ -294,7 +283,7 @@ function CreateEventModal({
       <Modal.Body>
         <div className='p-3'>
           <h2>{mode ? "Edit" : "Create"} Event</h2>
-          <div className='d-flex justify-content-between mb-2 gap-4'>
+          <div className='d-flex flex-column flex-lg-row justify-content-between mb-2 gap-4'>
             <div className='w-100'>
               <InputText
                 label='Event Name'
@@ -305,16 +294,14 @@ function CreateEventModal({
               />
             </div>
             <div className='w-100'>
-              <InputText
+              <InputSelect
                 label='Category'
-                placeholder='Select Event Category'
                 onChange={onChangeCategory}
-                value={data?.categoryID}
-                type='number'
+                id={data?.categoryID}
               />
             </div>
           </div>
-          <div className='d-flex justify-content-between mb-2 gap-4'>
+          <div className='d-flex flex-column flex-lg-row justify-content-between mb-2 gap-4'>
             <div className='w-100'>
               <InputText
                 label='Location'
@@ -328,7 +315,7 @@ function CreateEventModal({
               <InputText
                 label='Date'
                 onChange={onChangeDate}
-                value={data?.date}
+                // value={data?.date}
                 type='datetime-local'
                 placeholder='Enter Event Date'
               />
@@ -342,7 +329,7 @@ function CreateEventModal({
               placeholder='Enter Description'
             />
           </div>
-          <div className='d-flex justify-content-between mb-2 gap-4'>
+          <div className='d-flex flex-column flex-lg-row justify-content-between mb-2 gap-4'>
             <div className='w-100'>
               <InputText
                 label='Quota'
@@ -362,7 +349,7 @@ function CreateEventModal({
               />
             </div>
           </div>
-          <div className='mt-3'>
+          <div className='mt-3 d-flex justify-content-end gap-2'>
             <ButtonTertier title='Close' onClick={onClose} />
             <ButtonPrimary
               title={mode ? "Edit Event" : "Create Event"}

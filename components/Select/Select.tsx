@@ -5,28 +5,24 @@ import style from "./Select.module.css";
 export const InputSelect = ({
   label,
   option,
-  onChange
+  id,
+  onChange,
 }: inputSelectPropsType) => {
-
-  // testing check tipe data
-  const handleSelect = (e: any) => {
-    const selection = e.target.value;
-    return selection;
-  };
-  // end testing
-
   return (
     <div className={style.input_custom}>
       <label htmlFor='' className={style.input_label}>
-        Name
+        {label}
       </label>
       <select
-        onChange={handleSelect}
-        placeholder="test"
+        onChange={onChange}
+        value={id}
+        placeholder='Category'
         className={style.input_text}>
-        {option?.map((opt:any, index: number) => (
-          <option value={opt} key={index}>{opt}</option>
-        ))}
+        <option value={1}>Arts</option>
+        <option value={2}>Technology</option>
+        <option value={3}>Sports</option>
+        <option value={4}>Music</option>
+        <option value={5}>Education</option>
       </select>
     </div>
   );
