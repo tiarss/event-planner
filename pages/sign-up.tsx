@@ -7,8 +7,10 @@ import { ButtonPrimary } from "../components/Button/Button";
 import styles from "../styles/Sign-up.module.css";
 import { ApolloError, useMutation } from "@apollo/client";
 import { ADD_USER } from "../graphql/Mutation";
+import { useToast } from "@chakra-ui/react";
 
 const Signup: NextPage = () => {
+  const toast = useToast();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -30,11 +32,24 @@ const Signup: NextPage = () => {
         password: password,
       },
       onCompleted: (data) => {
-        console.log(data);
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
         router.push("/sign-in");
       },
       onError: (error: ApolloError) => {
-        console.log(error.message);
+        if(error.message == "email is already exist")
+        toast({
+          title: "Email is Already Exist",
+          description: "Failed to Create Account",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
       },
     });
   };

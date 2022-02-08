@@ -1,7 +1,7 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 const endpoint = new HttpLink({
-   uri: "http://13.208.193.5:8080/query",
+   uri: "https://salmaa.site/query",
 })
 
 const client = new ApolloClient({

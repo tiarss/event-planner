@@ -1,4 +1,5 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { ApolloError, useMutation, useQuery } from "@apollo/client";
+import { useToast } from "@chakra-ui/react";
 import moment from "moment";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -19,6 +20,7 @@ import {
 import style from "../../styles/details.module.css";
 
 function DetailsEvent() {
+  const toast = useToast()
   const Category = ["Arts", "Technology", "Sports", "Music", "Education"];
   const router = useRouter();
   const { id } = router.query;
@@ -57,13 +59,43 @@ function DetailsEvent() {
         eventID: id,
       },
       onCompleted: (data) => {
-        console.log(data);
-        refetchParticipant();
+        console.log(data);  
+        if(data.createParticipant.success){
+          toast({
+            title: `"You have been Successfully Registered in This Event"`,
+            description: "Success to Join Event",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          refetchParticipant();
+        }else{
+          toast({
+            title: `You have been Registered in This Event`,
+            description: "Failed to Join Event",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
       },
       context: {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+      },
+      onError: (error: ApolloError) => {
+        if (error.message === "Unexpected token i in JSON at position 0") {
+          toast({
+            title: "You Must Sign In",
+            description: "Failed to Join",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          router.replace('/sign-in')
+        }
+        console.log(error.message);
       },
     });
   };

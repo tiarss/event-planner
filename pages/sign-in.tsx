@@ -7,8 +7,10 @@ import { ButtonPrimary } from "../components/Button/Button";
 import styles from "../styles/Sign-up.module.css";
 import { useLazyQuery } from "@apollo/client";
 import { SIGNIN } from "../graphql/Query";
+import { useToast } from "@chakra-ui/react";
 
 const Signin: NextPage = () => {
+  const toast = useToast();
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -16,6 +18,12 @@ const Signin: NextPage = () => {
   const [signIn, { loading, error, data }] = useLazyQuery(SIGNIN);
 
   if (data) {
+    toast({
+      title: "Sign In Success",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
     router.push("/");
     localStorage.setItem("id", data.login.id);
     localStorage.setItem("token", data.login.token);
