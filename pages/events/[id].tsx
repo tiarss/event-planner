@@ -53,6 +53,7 @@ function DetailsEvent() {
     setComment(value);
   };
 
+  
   const handleJoin = () => {
     joinEvent({
       variables: {
@@ -117,7 +118,8 @@ function DetailsEvent() {
       },
     });
   };
-
+  console.log(dataParticipant)
+  console.log(dataComments)
   if (loading) {
     return <div>Loading</div>;
   } else {
@@ -223,7 +225,5 @@ function DetailsEvent() {
     );
   }
 }
-// location,
-//   date,
-//   category,
+
 export default DetailsEvent;
