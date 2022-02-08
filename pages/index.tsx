@@ -62,7 +62,7 @@ const Home = () => {
         </div>
         <div className='d-flex container w-75 px-4 pt-4 pb-2'>
           <h3>
-            Our result of "<em>{searchValue}</em>"
+            {`Our result of "`}<em>{`${searchValue}"`}</em>
           </h3>
         </div>
         <div className='d-flex container justify-content-center w-75'>
