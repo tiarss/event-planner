@@ -60,6 +60,10 @@
 
 .details_read_comments{
    margin-top: 20px;
+   height: 400px;
+   overflow-y: auto;
+   padding-right: 10px;
+   padding-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {

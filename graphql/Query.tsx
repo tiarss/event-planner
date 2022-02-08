@@ -81,6 +81,7 @@ export const GET_COMMENTS_BY_ID = gql`
       eventID
       content
       user {
+        id
         name
         avatar
       }
