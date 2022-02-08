@@ -219,7 +219,7 @@ function EditProfileModal({
       <Modal.Body>
         <div className='p-3'>
           <h2>Edit Profile</h2>
-          <div className='d-flex justify-content-between mb-2 gap-4'>
+          <div className='d-flex  flex-column flex-lg-row justify-content-between mb-2 gap-4'>
             <div className='w-100'>
               <InputText
                 label='Name'
@@ -239,7 +239,7 @@ function EditProfileModal({
               />
             </div>
           </div>
-          <div className='d-flex justify-content-between mb-2 gap-4'>
+          <div className='d-flex flex-column flex-lg-row justify-content-between mb-2 gap-4'>
             <div className='w-100'>
               <InputText
                 label='Occupation'
@@ -279,7 +279,7 @@ function EditProfileModal({
           </div>
           <div className='mt-3 d-flex justify-content-end gap-2'>
             <ButtonTertier title='Close' onClick={onClose} />
-            <ButtonPrimary title='Create Event' onClick={onSubmitEdit} />
+            <ButtonPrimary title='Edit Profile' onClick={onSubmitEdit} />
           </div>
         </div>
       </Modal.Body>

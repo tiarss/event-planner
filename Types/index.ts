@@ -55,6 +55,7 @@ interface dataModalProfileProps {
   address?: string;
   phone?: string;
   occupation?: string;
+  avatar?:string;
 }
 
 export type modalProfilePropsType = {
@@ -110,7 +111,7 @@ export type modalEventPropsType = {
   data?: dataModalEventProps;
   show: boolean;
   onChangeTitle?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onChangeCategory?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeCategory?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onChangeDesc?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeImage?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeQuota?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -121,7 +122,8 @@ export type modalEventPropsType = {
 };
 
 export type inputSelectPropsType = {
+  id?:number;
   label?: string;
   option?: string[];
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
