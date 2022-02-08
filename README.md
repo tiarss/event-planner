@@ -33,6 +33,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Project Overview
+
 This work is done as an assignment to simulate front-end and back-end integration in webpage development. The front-end part was done using Next.js and GraphQL primarily, with bootstrap and chakra UI as addition. You can see the final result in [here].
 
 Packages used: 
@@ -55,53 +57,53 @@ Packages used:
 Before running this in your browser, make sure to have these packages installed.
 
 This webpage consists of 6 pages and 11 components that were used througout the web.
-# 1. Page Sign Up 
+### 1. Page Sign Up 
 (`pages/sign-up.tsx`)
 
-# 2. Page Sign In 
+### 2. Page Sign In 
 (`pages/sign-in.tsx`)
 
-# 3. Page Home 
+### 3. Page Home 
 (`pages/index.tsx`)
 
-# 4. Page Detail 
+### 4. Page Detail 
 (`pages/events/[id].tsx`)
 
-# 5. Page Search 
+### 5. Page Search 
 (`pages/search.tsx`)
 
-# 6. Page Profile 
+### 6. Page Profile 
 (`pages/profile/index.tsx`)
 
-# 7. Component Header 
+### 7. Component Header 
 (`components/Header/Header.tsx`)
 
-# 8. Component Footer 
+### 8. Component Footer 
 (`components/Footer/Footer.tsx`)
 
-# 9. Component UI 
+### 9. Component UI 
 (`components/UI/..`)
 
-# 10. Component Button 
+### 10. Component Button 
 (`components/Button/Button.tsx`)
 
-# 11. Component Comment Card 
+### 11. Component Comment Card 
 (`components/CardsComment/CardsComment.tsx`)
 
-# 12. Component Detail Card 
+### 12. Component Detail Card 
 (`components/CardsDetail/CardsDetail.tsx`)
 
-# 13. Component Home Card 
+### 13. Component Home Card 
 (`components/CardsHome/CardsHome.tsx`)
 
-# 14. Component Event Card 
+### 14. Component Event Card 
 (`components/EventsCards/EventCards.tsx`)
 
-# 15. Component Input
+### 15. Component Input
 (`components/Input/Input.tsx`)
 
-# 16. Component Search Bar 
+### 16. Component Search Bar 
 (`components/SearchBar/SearchBar.tsx`)
 
-# 17. Component Select 
+### 17. Component Select 
 (`components/Select/Select.tsx`)
