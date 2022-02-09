@@ -97,6 +97,11 @@ const Home = () => {
     return (
       <>
         <Header />
+        <Head>
+          <title>Home</title>
+          <meta name='description' content='Your Profile Page' />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
         <div className={styles.banner}>
           <p>
             Create. Attend. <br /> Join

@@ -150,6 +150,11 @@ const Search: NextPage = () => {
   } else if (dataPaginate) {
     return (
       <>
+        <Head>
+          <title>Search</title>
+          <meta name='description' content='Your Profile Page' />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
         <Header />
         <div className={styles.banner}>
           <p>
